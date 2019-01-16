@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Manage Account!{% endblock %}
+{% block body %}
+	<div class ="img2">
+		<div class ="contenuTitre">
+			<h3>Account</h3>
+		</div>
+		<div class="container">
+        <div class="row user-menu-container square">
+            <div class="col-md-12 user-details">
+                <div class="row spacepurplebg white">
+                    <div class="col-md-2 no-pad">
+                        <div class="user-image">
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-10 no-pad">
+                        <div class="user-pad">
+                            <h3>Welcome back, {{ app.user.firstName }}</h3>                   
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+{% endblock %}

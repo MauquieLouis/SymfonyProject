@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les maçons de L'informatique{% endblock %}
+
+{% block body %}
+
+	<div class ="img7">
+	<div class ="contenuTitre">
+		<h3>New Article</h3>
+	</div>
+		  		<div class = "form">
+      	{{ form_start(form) }}
+      		{{ form_errors(form) }}
+      		
+      		 {{ form_row(form.publishedAt) }}
+      		
+      		{{ form_label(form.title, 'Title') }}	
+      		</br>
+      		{{ form_widget(form.title) }}
+      		</br>
+      		{{ form_label(form.slug, 'The Slug') }}	
+      		</br>
+      		{{ form_widget(form.slug) }}
+      		
+      		</br>
+      		
+      		{{ form_label(form.content, 'Content') }}	
+      		</br>
+    		{{ form_widget(form.content) }}
+    		
+			</br>
+      		{{ form_label(form.author, 'Author') }}	
+      		</br>
+    		{{ form_widget(form.author) }}
+			    
+
+			<div class ="FormButton">{{ form_row(form.Enregistrer) }}</div>
+      	{{ form_end(form) }}
+      	</div>
+		
+		
+	</div>
+
+{% endblock %}

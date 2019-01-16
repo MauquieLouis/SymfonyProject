@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LMI Login !{% endblock %}
+
+{% block body %}
+	<div class ="img3">
+		<div class ="contenuTitre">
+			<h3>Login</h3>
+		</div>
+		<form class="form-signin" method="post">
+        {% if error %}
+            <div class = "alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div class ="formLog">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate')}}">
+       
+        <div class="checkbox mb-3">
+            <label>
+                <!--<input type="checkbox" name="_remember_me"> Remember me-->
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Sign in
+        </button>
+        </br>
+         <a href="{{ path('app_register') }}"><p class="button-Create-Account">Don't have account ! sign up</p></a>
+        </div>
+    </form>
+	</div>
+{% endblock %}
