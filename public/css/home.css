@@ -98,7 +98,7 @@ p
 	margin-top:50px;
 	position: absolute; /* postulat de départ */
 	left: 50%; /* à 50%/50% du parent référent */
-	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+	transform: translate(-50%); /* décalage de 50% de sa propre taille */
 }
 
 .Article-display-home
@@ -185,7 +185,7 @@ body
 }
 .button-Create-Account
 {
-	color: rgba(200,200,200,1);
+	color: rgba(200,200,200,0.7);
 	width: 100%;
 	text-align: center;
 	/*color: #DDDDDD;*/
