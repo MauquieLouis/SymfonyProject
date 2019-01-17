@@ -11,18 +11,18 @@
         <div class = "bandeau">
         <ul>
         	<!-- BOUTONS COMMUN (CONNECTE OU NON) -->
-        	<li><a href = "{{ path('home') }}" ><h1>LMI</h1></a></li>
+        	<li><a href = "{{ path('home') }}"  ><h1>LMI</h1></a></li>
         	{% if is_granted('ROLE_USER') %}
         		<!-- SI LA PERSONNE CONNECTE A LE ROLE USER : -->
-        		<li class = "bouton1"><a href="{{ path('app_logout') }}">Logout</a>					</li>
-        		<li class = "bouton1"><a href="{{ path('app_account') }}">Account</a>				</li>
+        		<li ><a href="{{ path('app_logout') }}" class = "boutonAccueil">Logout</a>					</li>
+        		<li ><a href="{{ path('app_account') }}" class = "boutonAccueil">Account</a>				</li>
         	    {% if is_granted('ROLE_ADMIN') %}
         		<!--  SI UN ADMIN S'EST CONNECTE -->
-        		<li class = "bouton1"><a href="{{ path('home_admin')  }}">Control Panel</a>		</li>
+        		<li ><a href="{{ path('home_admin')  }}" class = "boutonAccueil">Control Panel</a>		</li>
         		{% endif %}
         	{% else %}
         	<!-- SI LA PERSONNE N'EST PAS CONNECTE -->
-        	<li class = "bouton1"><a href="{{ path('app_login')   }}">Login</a>					</li>
+        	<li ><a href="{{ path('app_login')   }}" class = "boutonAccueil">Login</a>					</li>
         	{% endif %}
         </ul>
         </div>

@@ -3,6 +3,11 @@
 	width:100%;
 	height: 84px;
 	background-color:#000000;
+	color:#FFFFFF;
+}
+a
+{
+	text-decoration:none;
 }
 
 li
@@ -11,20 +16,24 @@ li
 	display:inline-block;	
 }
 
-.bouton1
+.boutonAccueil
 {
 	margin-left: 35px;
+	color:#FFFFFF;
+
 }
-.bouton1:hover
+.boutonAccueil:hover
 {
 	color:#CCCCCC;
 	cursor: cell;
+	text-decoration: underline;
 }
 
 h1
 {
 	color:#FFFFFF;
 	Font-size:30px;
+	text-decoration: underline;
 }
 h3
 {
