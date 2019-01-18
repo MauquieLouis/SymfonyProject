@@ -4,8 +4,26 @@
 
 {% block body %}
 	<div class ="img7">
-	<div class ="contenuTitre">
-		<h3>Account Control</h3>
+		<div class ="contenuTitre">
+			<h3>Account Control</h3>
+		</div>
+        {{ form_start(form, {attr: {class: 'my-form-class'} })}}
+        {{ form_widget(form) }}   
+        
+        {{ form_label(form.email) }}
+        {{ form_errors(form.email) }}
+        
+        <ul>
+        {% for emailField in form.email %}
+            <li>
+                {{ form_errors(emailField) }}
+                {{ form_widget(emailField) }}
+            </li>
+        {% endfor %}
+        </ul>
+	   {#} <input type="submit" class="btn" value="Create" />#}
+        {{ form_end(form) }}
+		
 	</div>
 
 {% endblock %}

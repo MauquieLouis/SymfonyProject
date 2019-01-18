@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Form\ListFormType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\Article;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\DBAL\Driver\Connection;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,7 +21,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormTypeInterface;
 /**
  *  @IsGranted("ROLE_ADMIN")
  *
@@ -73,12 +79,29 @@ class AdminController extends AbstractController
      * 
      * @Route("/admin/accountControl", name="admin_accountControl")
      */
-    public function AccountControl()
+    public function AccountControl(Request $request)
     {
-         
+       $list = new User();
+       $form = $this->createForm(ListFormType::class, $list);
+       /*$form->add('email', CollectionType::class, [
+           // each entry in the array will be an "email" field
+           'entry_type' => EmailType::class,
+           // these options are passed to each "email" type
+           'entry_options' => [
+               'attr' => ['class' => 'email-box'],
+           ],
+       ])
+       ->add('submit', SubmitType::class, [
+           'label' => 'Create',
+           'attr' => ['class' => 'btn btn-default pull-right'],
+       ]);*/
         //$builder->add('isAttending', ChoiceType::class,['choices' => ['Maybe' => null , 'Yes' => true, 'No', false,]]);
         
-        return $this->render('Admin/accountControl.html.twig', []); 
+        /*$builder->add('task')
+                ->add('dueDate', null, ['widget' => 'single_text'])
+                ->add('save', SubmitType::class);*/
+        
+       return $this->render('Admin/accountControl.html.twig',array('form' => $form->createView(),)); 
     }
     
     /**
@@ -86,6 +109,6 @@ class AdminController extends AbstractController
      */
     public function DynamicStream()
     {
-        return $this->render('Admin/dynamicStream.html.twig', []);
+        return $this->render('Admin/dynamicStream.html.twig', array('form' => $form->createView()));
     }
 }
