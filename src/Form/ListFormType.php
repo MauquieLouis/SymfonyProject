@@ -18,7 +18,7 @@ class ListFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         //Ajouter les champs pour le formulaire !
-        //https://gist.github.com/bpesquet/a27232767712c72406c1
+        //https://symfony.com/doc/current/reference/forms/types/choice.html
         $builder->add('email', CollectionType::class, [
             // each entry in the array will be an "email" field
             'entry_type' => EmailType::class,
