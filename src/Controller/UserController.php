@@ -19,7 +19,7 @@ class UserController extends AbstractController
     public function DisplayArticle($slug, EntityManagerInterface $em)
     {
         $repository = $em->getRepository(Article::class);
-        /** @var Blog $article */
+        /** @var article $article */
         $article = $repository->findOneBy(['slug'=> $slug]);
         
         if(!$article)

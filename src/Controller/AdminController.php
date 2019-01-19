@@ -79,27 +79,11 @@ class AdminController extends AbstractController
      * 
      * @Route("/admin/accountControl", name="admin_accountControl")
      */
-    public function AccountControl(Request $request)
+    public function AccountControl(Request $request, EntityManagerInterface $em)
     {
        $list = new User();
        $form = $this->createForm(ListFormType::class, $list);
-       /*$form->add('email', CollectionType::class, [
-           // each entry in the array will be an "email" field
-           'entry_type' => EmailType::class,
-           // these options are passed to each "email" type
-           'entry_options' => [
-               'attr' => ['class' => 'email-box'],
-           ],
-       ])
-       ->add('submit', SubmitType::class, [
-           'label' => 'Create',
-           'attr' => ['class' => 'btn btn-default pull-right'],
-       ]);*/
-        //$builder->add('isAttending', ChoiceType::class,['choices' => ['Maybe' => null , 'Yes' => true, 'No', false,]]);
-        
-        /*$builder->add('task')
-                ->add('dueDate', null, ['widget' => 'single_text'])
-                ->add('save', SubmitType::class);*/
+
         
        return $this->render('Admin/accountControl.html.twig',array('form' => $form->createView(),)); 
     }
@@ -109,6 +93,6 @@ class AdminController extends AbstractController
      */
     public function DynamicStream()
     {
-        return $this->render('Admin/dynamicStream.html.twig', array('form' => $form->createView()));
+        return $this->render('Admin/dynamicStream.html.twig',);
     }
 }

@@ -11,33 +11,19 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation\Category;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ListFormType extends AbstractType
 {
 
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        //Ajouter les champs pour le formulaire !
-        //https://symfony.com/doc/current/reference/forms/types/choice.html
-        $builder->add('email', CollectionType::class, [
-            // each entry in the array will be an "email" field
-            'entry_type' => EmailType::class,
-            // these options are passed to each "email" type
-            'entry_options' => [
-                'attr' => ['class' => 'email-box'],
-            ],])
-            ->add('email', ChoiceType::class, [
-                'choices'  => [
-                    'Maybe' => null,
-                    'Yes' => true,
-                    'No' => false,
-                ], ]);
-        
-            //->add('email')
-            //->add('roles')
-            //->add('firstName')
-            //->add('password')
-            //->add('save', SubmitType::class, ['label' => 'Create Post'])
+                
+        $builder->add('email', EntityType::class,['class' => User::class, 'choice_label' => 'email',])      //Liste déroulante des emails.
+       
         ;
     }
 
