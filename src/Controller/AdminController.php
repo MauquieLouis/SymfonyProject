@@ -56,10 +56,12 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             //dd($form->getData());
-            $data = $form->getData();
+          /*  $data = $form->getData();
             $article = new Article();
             $article->setTitle($data['title']);
-            $article->setContent($data['content']);
+            $article->setContent($data['content']);*/
+            /** @var Article $article */
+            $article = $form->getData();
             sprintf($buf,"%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
             $article->setSlug($buf);                            
             $article->setAuthor($this->getUser());                      
@@ -67,7 +69,11 @@ class AdminController extends AbstractController
             $em->persist($article);        //Pour ajouter � la base de donn�e
             $em->flush();
             
-            return $this->render('Admin/validation.html.twig', ['action' => 'Article Save']);
+            $this->addFlash('success','Article Created ! you are the boss :) !');
+            $this->addFlash('success','Not the big boss like Mr BOYER');
+            $this->addFlash('success','BECAUSE "VOUS BOSSEZ PAS LES MECS !!!! \"');
+            
+            return $this->redirectToRoute('list_article');
         }
         /*$form = $this->createFormBuilder($article)     //creation du formulaire
         ->add('publishedAt', DateType::class)
