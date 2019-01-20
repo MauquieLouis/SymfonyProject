@@ -3,21 +3,35 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleFormType extends AbstractType
 {
+    private $userRepository;
+    
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', TextType::class, ['help' => 'Put a unique title for this article !',])
             ->add('content')
             ->add('publishedAt', null,['widget' => 'single_text'])
+            ->add('author', EntityType::class, ['class' => User::class,
+            'choice_label' => function(User $user){ return sprintf('(%d) %s ==> %s',$user->getId(), $user->getFirstName(), $user->getEmail());},
+            'choices' => $this->userRepository->findAllEmailAlphabetical(),
+            'placeholder' => 'Choose an Author (schlague) !!'])
+           /* ->add('author', EntityType::class,['class' => User::class, 'choice_label' => function(User $user)
+            { return sprintf('(%d) %s ==> %s',$user->getId(), $user->getFirstName(), $user->getEmail());}, 'placeholder' => 'Choose an Author (schlague) !!'])*/
         ;
     }
 

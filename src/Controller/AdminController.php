@@ -64,14 +64,14 @@ class AdminController extends AbstractController
             $article = $form->getData();
             sprintf($buf,"%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
             $article->setSlug($buf);                            
-            $article->setAuthor($this->getUser());                      
+            //$article->setAuthor($this->getUser());                      
             $article->setHeartCount(rand(0,100));
             $em->persist($article);        //Pour ajouter � la base de donn�e
             $em->flush();
             
             $this->addFlash('success','Article Created ! you are the boss :) !');
             $this->addFlash('success','Not the big boss like Mr BOYER');
-            $this->addFlash('success','BECAUSE "VOUS BOSSEZ PAS LES MECS !!!! \"');
+            $this->addFlash('success','BECAUSE "VOUS BOSSEZ PAS LES MECS !!!! "');
             
             return $this->redirectToRoute('list_article');
         }
