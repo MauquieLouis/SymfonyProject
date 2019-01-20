@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Form;
 
 use App\Entity\User;
@@ -22,9 +21,18 @@ class ListFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
                 
-        $builder->add('email', EntityType::class,['class' => User::class, 'choice_label' => 'email',])      //Liste déroulante des emails.
-       
+       $builder->add('email', EntityType::class,['class' => User::class, 'choice_label' => 'email', 'choice_value' => function (User $entity = null)
+            { return $entity ? $entity->getId() : '';}/*function($user){ return $user->getEmail();}/*'choice_label' => 'email'*/,])  //Liste déroulante des emails.
+        ->add('Save', SubmitType::class, ['label' => 'Save Changes !'])   //bouton applications modifications.
         ;
+        
+        /*$builder->add('email', ChoiceType::class, [
+            'choices'  => [
+                'Maybe' => null,
+                'Yes' => true,
+                'No' => false,
+            ],
+        ])->add('Save', SubmitType::class, ['label' => 'Save Changes !']);*/
     }
 
     public function configureOptions(OptionsResolver $resolver)

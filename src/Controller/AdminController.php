@@ -69,7 +69,7 @@ class AdminController extends AbstractController
             $em->persist($blog);        //Pour ajouter � la base de donn�e
             $em->flush();
             $request = 0;
-            return $this->render('Admin/validation.html.twig',);
+            return $this->render('Admin/validation.html.twig', ['action' => 'Article Save']);
         }
         
         return $this->render('Admin/newArticle.html.twig', array('form' => $form->createView(),));
@@ -79,12 +79,19 @@ class AdminController extends AbstractController
      * 
      * @Route("/admin/accountControl", name="admin_accountControl")
      */
-    public function AccountControl(Request $request, EntityManagerInterface $em)
+    public function AccountControl(Request $request)
     {
        $list = new User();
        $form = $this->createForm(ListFormType::class, $list);
 
-        
+       //if (($form->getClickedButton() && 'Save' === $form->getClickedButton()->getName())) //BOUTON SAUVEGARDER + APERCU
+       $form->handleRequest($request);
+       
+       if($form->isSubmitted() && $form->isValid())
+       {
+           return $this->render('Admin/validation.html.twig',['action' => 'Change save']);
+       }
+       
        return $this->render('Admin/accountControl.html.twig',array('form' => $form->createView(),)); 
     }
     
