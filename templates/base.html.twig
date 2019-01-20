@@ -32,11 +32,11 @@
 
     	<div class = "corps">
     	
-    	{% for message in app.flashes('success') %}
-    		<div class = "alert alert-success"> {{ message }}</div> 
-	    {% endfor %}
+    	
 	    
-        {% block body %}{% endblock %}
+        {% block body %}{% for message in app.flashes('success') %}
+    		<div class = "alert-success"> {{ message }}</div> 
+	    {% endfor %}{% endblock %}
         {% block javascripts %}{% endblock %}
         </div>
     </body>

@@ -62,8 +62,9 @@ class AdminController extends AbstractController
             $article->setContent($data['content']);*/
             /** @var Article $article */
             $article = $form->getData();
-            sprintf($buf,"%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
-            $article->setSlug($buf);                            
+            sprintf("%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
+            $article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,1000))); 
+            //$article->setSlug($buf);                            
             //$article->setAuthor($this->getUser());                      
             $article->setHeartCount(rand(0,100));
             $em->persist($article);        //Pour ajouter � la base de donn�e

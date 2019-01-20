@@ -1,5 +1,6 @@
 .bandeau
 {
+	margin-top:-16px;
 	width:100%;
 	height: 84px;
 	background-color:#000000;
@@ -182,7 +183,17 @@ h5
 	height: 25px;
 	border-radius:14px 14px 14px 14px;
 	background:#E85656;
-	border:2px solid  #EF0303;
+	border:1px solid  #EF0303;
+}
+.alert-success
+{
+	text-align:center;
+	width: 50%;
+	height: 25px;
+	border-radius:14px 14px 14px 14px;
+	background:#52BE2F;
+	border:1px solid #305D21;
+	opacity:0.2;
 }
 
 body
@@ -193,7 +204,7 @@ body
 	margin-top:0;
 	margin: 0;
 	padding: 0;
-	background-color: #000011;
+	background-color: #AAAAAA;/*#000011;*/
 	/*background-image: url("../Images/Image1.jpg"), url("../Images/Image2.jpg");
 	background-repeat: no-repeat;
 	/*background-attachment: fixed;
@@ -238,7 +249,7 @@ body
 	background:rgba(255,255,255,0.2);
 	position: absolute; /* postulat de départ */
 	left: 50%; /* à 50%/50% du parent référent */
-	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+	transform: translate(-50%,-50%); /* décalage de 50% de sa propre taille */
 }
 .formNewAccount
 {
