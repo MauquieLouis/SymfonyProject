@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Form\ListFormType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-
+use App\Form\ArticleFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -24,6 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormTypeInterface;
+use App\Repository\ArticleRepository;
 /**
  *  @IsGranted("ROLE_ADMIN")
  *
@@ -46,9 +47,29 @@ class AdminController extends AbstractController
      */
     public function NewArticle(Request $request, EntityManagerInterface $em)
     {
-        $article = new Article();
+        //////////////////////////-----ARTICLES NON PUBLIE CAR LA DATE EST NULLE--------////////////////////////
+        //$article = new Article();
+        $buf ="\0";
+        $form = $this->createForm(ArticleFormType::class);
         
-        $form = $this->createFormBuilder($article)     //creation du formulaire
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            //dd($form->getData());
+            $data = $form->getData();
+            $article = new Article();
+            $article->setTitle($data['title']);
+            $article->setContent($data['content']);
+            sprintf($buf,"%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
+            $article->setSlug($buf);                            
+            $article->setAuthor($this->getUser());                      
+            $article->setHeartCount(rand(0,100));
+            $em->persist($article);        //Pour ajouter � la base de donn�e
+            $em->flush();
+            
+            return $this->render('Admin/validation.html.twig', ['action' => 'Article Save']);
+        }
+        /*$form = $this->createFormBuilder($article)     //creation du formulaire
         ->add('publishedAt', DateType::class)
         ->add('title', TextType::class)
         ->add('slug', TextType::class)
@@ -70,11 +91,20 @@ class AdminController extends AbstractController
             $em->flush();
             $request = 0;
             return $this->render('Admin/validation.html.twig', ['action' => 'Article Save']);
-        }
+        }*/
         
         return $this->render('Admin/newArticle.html.twig', array('form' => $form->createView(),));
     }
-    
+    /**
+     * @Route ("/admin/list/article", name ="list_article")
+     * 
+     */
+    public function ListArticle(ArticleRepository $articleRepo)
+    {
+        $articles = $articleRepo->findAll();
+        
+        return $this->render("Admin/listArticle.html.twig", ['articles' => $articles,]);
+    }
     /**
      * 
      * @Route("/admin/accountControl", name="admin_accountControl")

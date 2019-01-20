@@ -8,11 +8,23 @@
 			<h3>Control Panel</h3>
 		</div>
 		<div class = "Controls-Admin">
-			<div class = "bt-1et1">
-				<a href="{{ path('admin_article') }}"><div class = "bt-type-1">New Article						</div></a>
-				<a href="{{ path('admin_accountControl') }}"><div class = "bt-type-1">Account Control			</div></a>
-			</div>	
-			<a href="{{ path('admin_dynamicStream') }}"><div class = "bt-type-2">Configure Dynamic Stream	</div></a>
+			<ul>
+				<li>
+					<div class = "bt-1et1">
+						<a href="{{ path('admin_article') }}"><div class = "bt-type-1">New Article						</div></a>
+						<a href="{{ path('admin_accountControl') }}"><div class = "bt-type-1">Account Control			</div></a>
+					</div>	
+				</li>
+				<li>
+					<a href="{{ path('admin_dynamicStream') }}"><div class = "bt-type-2">Configure Dynamic Stream		</div></a>
+				</li>
+				<li>
+					<div class = "bt-12et12">
+						<a href="{{ path('list_article') }}"><div class = "bt-type-1">List Article						</div></a>
+						<a href="{{ path('home') }}"><div class = "bt-type-1">Useless Button							</div></a>
+					</div>	
+				</li>
+			</ul>
 		</div>
 	</div>
 

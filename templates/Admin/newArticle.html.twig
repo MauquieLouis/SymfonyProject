@@ -5,10 +5,18 @@
 {% block body %}
 
 	<div class ="img7">
-	<div class ="contenuTitre">
-		<h3>New Article</h3>
-	</div>
-		  		<div class = "form">
+		<div class ="contenuTitre">
+			<h3>New Article</h3>
+		</div>
+		<div class = "form">
+			{{ form_start(form) }}
+			    {{ form_widget(form) }}
+			    
+			    <button type="Submit" class ="">Create Article !</button>
+			{{ form_end(form) }}
+		</div>	
+		
+		  		{#<div class = "form">
       	{{ form_start(form) }}
       		{{ form_errors(form) }}
       		
@@ -36,7 +44,7 @@
 
 			<div class ="FormButton">{{ form_row(form.Enregistrer) }}</div>
       	{{ form_end(form) }}
-      	</div>
+      	</div>#}
 		
 		
 	</div>

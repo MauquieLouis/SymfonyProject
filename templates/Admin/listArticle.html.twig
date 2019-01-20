@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les maçons de L'informatique{% endblock %}
+
+{% block body %}
+
+	<div class ="img7">
+	<div class ="contenuTitre">
+		<h3>Liste Article</h3>
+	</div>
+		<ul>
+		    {% for article in articles %}
+				<li>{{ article.title }} : {{ article.author }} : {{ article.publishedAt ? 'published' : 'not published'}}</li>
+				</br>
+		    {% endfor %}
+		</ul>
+	</div>
+{% endblock %}
