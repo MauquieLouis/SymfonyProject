@@ -19,7 +19,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message ="Get creative and think of title!")
+     * 
      */
     private $title;
 
@@ -151,13 +151,11 @@ class Article
         
         return $this;
     }
-    /**
-     * @Assert\Callback
-     */
+
     public function validate(ExecutionContextInterface $context, $payload)
     {
-        if (stripos($this->getTitle(), 'the borg') !== false) {
-            $context->buildViolation('Um.. the Bork kinda makes us nervous')
+        if (stripos($this->getTitle(), 'Le Titre') !== false) {
+            $context->buildViolation('Le titre n\'est pas un super titre')
             ->atPath('title')
             ->addViolation();
         }

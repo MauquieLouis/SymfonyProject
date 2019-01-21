@@ -29,7 +29,7 @@ class ListFormType extends AbstractType
     }
     
     
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $entry_options)
     {
                 
        /*$builder/*->add('email', EntityType::class,['class' => User::class, 'choice_label' => 'email', 'choice_value' => function (User $entity = null)

@@ -3,28 +3,16 @@
 namespace App\Controller;
 
 use App\Form\ListFormType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use App\Form\ArticleFormType;
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\Article;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\DBAL\Driver\Connection;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormTypeInterface;
-use App\Repository\ArticleRepository;
 /**
  *  @IsGranted("ROLE_ADMIN")
  *
@@ -43,13 +31,11 @@ class AdminController extends AbstractController
         return $this->data;
     }
     /**
-     * @Route("/admin/article", name="admin_article")
+     * @Route("/admin/article/new", name="admin_article")
      */
     public function NewArticle(Request $request, EntityManagerInterface $em)
     {
         //////////////////////////-----ARTICLES NON PUBLIE CAR LA DATE EST NULLE--------////////////////////////
-        //$article = new Article();
-        $buf ="\0";
         $form = $this->createForm(ArticleFormType::class);
         
         $form->handleRequest($request);
@@ -62,8 +48,8 @@ class AdminController extends AbstractController
             $article->setContent($data['content']);*/
             /** @var Article $article */
             $article = $form->getData();
-            sprintf("%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
-            $article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,1000))); 
+           // sprintf("%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
+            $article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,10000))); 
             //$article->setSlug($buf);                            
             //$article->setAuthor($this->getUser());                      
             $article->setHeartCount(rand(0,100));
@@ -102,6 +88,37 @@ class AdminController extends AbstractController
         
         return $this->render('Admin/newArticle.html.twig', array('form' => $form->createView(),));
     }
+    
+    /**
+     * @var int $id
+     * @Route ("/admin/article/edit/{id}", name = "admin_article_edit")
+     * @IsGranted("ROLE_ADMIN", subject="article")
+     */
+    public function EditArticle(Article $article, Request $request, EntityManagerInterface $em, ArticleRepository $articleRepo)
+    {
+        //dd($article);
+        //$articles =  $articleRepo->findAll();//$articleRepo->findOneBy('id' => $article->getId());
+        $form = $this->createForm(ArticleFormType::class, $article);
+        
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            //$article = $form->getData();
+            //$article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,10000)));
+            //$article->setHeartCount(rand(0,100));
+            $em->persist($article);        //Pour ajouter � la base de donn�e
+            $em->flush();
+        
+            $this->addFlash('success','Article updated');
+            
+            return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId(),$article]);
+        }
+        
+        
+        return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(), 'article' => $article));
+    }
+    
+    
     /**
      * @Route ("/admin/list/article", name ="list_article")
      * 

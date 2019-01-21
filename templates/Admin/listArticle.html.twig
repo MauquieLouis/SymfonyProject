@@ -6,11 +6,11 @@
 
 	<div class ="img7">
 	<div class ="contenuTitre">
-		<h3>Liste Article</h3>
+		<h3>List Article</h3>
 	</div>
 		<ul>
 		    {% for article in articles %}
-				<li>{{ article.title }} : {{ article.author }} : {{ article.publishedAt ? 'published' : 'not published'}}</li>
+				<li>{{ article.title }} : {{ article.author }} : {{ article.publishedAt ? 'published' : 'not published'}} <a href ="{{ path('admin_article_edit',{'id': article.id}) }}">Edit Article</a></li>
 				</br>
 		    {% endfor %}
 		</ul>

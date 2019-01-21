@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\User;
+use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,10 +21,10 @@ class ArticleFormType extends AbstractType
         $this->userRepository = $userRepository;
     }
     
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder,  array $options)
     {
         $builder
-            ->add('title', TextType::class, ['help' => 'Put a unique title for this article !',])
+            ->add('title', TextType::class, ['help' => 'Put a unique title for this article dussutour !',])
             ->add('content')
             ->add('publishedAt', null,['widget' => 'single_text'])
             ->add('author', EntityType::class, ['class' => User::class,
