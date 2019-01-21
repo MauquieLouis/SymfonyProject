@@ -94,10 +94,10 @@ class AdminController extends AbstractController
      * @Route ("/admin/article/edit/{id}", name = "admin_article_edit")
      * @IsGranted("ROLE_ADMIN", subject="article")
      */
-    public function EditArticle(Article $article, Request $request, EntityManagerInterface $em, ArticleRepository $articleRepo)
+    public function EditArticle(Article $article, Request $request, EntityManagerInterface $em)
     {
         //dd($article);
-        //$articles =  $articleRepo->findAll();//$articleRepo->findOneBy('id' => $article->getId());
+        $article->setAuthor(null) ;
         $form = $this->createForm(ArticleFormType::class, $article);
         
         $form->handleRequest($request);
