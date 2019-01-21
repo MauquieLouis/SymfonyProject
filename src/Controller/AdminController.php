@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ListFormType;
+use App\Form\EditFormType;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -129,16 +130,20 @@ class AdminController extends AbstractController
      * 
      * @Route("/admin/accountControl", name="admin_accountControl")
      */
-    public function AccountControl(Request $request)
-    {
-       $list = new User();
-       $form = $this->createForm(ListFormType::class, $list);
+    public function AccountControl(Request $request, EntityManagerInterface $em)
+    {;
+       $form = $this->createForm(EditFormType::class);
 
-       //if (($form->getClickedButton() && 'Save' === $form->getClickedButton()->getName())) //BOUTON SAUVEGARDER + APERCU
        $form->handleRequest($request);
        
        if($form->isSubmitted() && $form->isValid())
        {
+           //dd($user);
+           $Userdata = $form->getData();
+           $Userdata->setRoles(array($Userdata['role']));
+           
+           $em->persist($Userdata);        //Pour ajouter � la base de donn�e
+           $em->flush();
            return $this->render('Admin/validation.html.twig',['action' => 'Change save']);
        }
        
