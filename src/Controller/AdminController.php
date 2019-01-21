@@ -97,25 +97,21 @@ class AdminController extends AbstractController
     public function EditArticle(Article $article, Request $request, EntityManagerInterface $em)
     {
         //dd($article);
-        $article->setAuthor(null) ;
         $form = $this->createForm(ArticleFormType::class, $article);
         
         $form->handleRequest($request);
+        
         if($form->isSubmitted() && $form->isValid())
         {
-            //$article = $form->getData();
-            //$article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,10000)));
-            //$article->setHeartCount(rand(0,100));
             $em->persist($article);        //Pour ajouter � la base de donn�e
             $em->flush();
         
             $this->addFlash('success','Article updated');
-            
-            return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId(),$article]);
+            return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
         }
         
         
-        return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(), 'article' => $article));
+        return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(),));
     }
     
     
