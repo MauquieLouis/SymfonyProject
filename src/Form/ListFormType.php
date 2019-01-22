@@ -3,6 +3,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -21,48 +22,29 @@ use Symfony\Component\Form\FormEvents;
 
 class ListFormType extends AbstractType
 {
-    public static function getSubscribedEvents()
+    private $userRepository;
+    
+    public function __construct(UserRepository $userRepository)
     {
-        // Tells the dispatcher that you want to listen on the form.pre_set_data
-        // event and that the preSetData method should be called.
-        return [FormEvents::PRE_SET_DATA => 'preSetData'];
+        $this->userRepository = $userRepository;
     }
     
     
     public function buildForm(FormBuilderInterface $builder, array $entry_options)
     {
                 
-       /*$builder/*->add('email', EntityType::class,['class' => User::class, 'choice_label' => 'email', 'choice_value' => function (User $entity = null)
-            { return $entity ? $entity->getId() : '';}/*function($user){ return $user->getEmail();}/*'choice_label' => 'email'*//*,]) */ //Liste déroulante des emails.
-        //->add('Save', SubmitType::class, ['label' => 'Save Changes !'])   //bouton applications modifications.
+       $builder
+       ->add('user', EntityType::class, ['class' => User::class,
+           'choice_label' => function(User $user){ return sprintf('(%d)==> %s',$user->getId(), $user->getEmail());},
+           'choices' => $this->userRepository->findAllEmailAlphabetical(),
+           'placeholder' =>'Choose an Author (schlague) !!',]);
        
-        $builder->add('firstname');
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
-            
-            $user = $event->getData();
-            $form = $event->getForm();
-            
-            //test si l'email existe déja
-            if(!$user || null === $user->getId())
-            {
-                $form->add('email', EntityType::class,['class' => User::class, 'choice_label' => 'email',]);
-            }
-        });
-              
-        
-        /*$builder->add('email', ChoiceType::class, [
-            'choices'  => [
-                'Maybe' => null,
-                'Yes' => true,
-                'No' => false,
-            ],
-        ])->add('Save', SubmitType::class, ['label' => 'Save Changes !']);*/
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            
         ]);
     }
 }

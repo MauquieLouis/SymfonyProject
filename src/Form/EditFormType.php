@@ -24,14 +24,13 @@ class EditFormType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('account')
-            ->add('account', EntityType::class, ['class' => User::class,
+        $builder->add('roles', ChoiceType::class,['placeholder' => 'Choose a Role', 'choices' => ['Admin' => 'ROLE_ADMIN', 'User' => 'ROLE_USER']]);
+           /* ->add('email', EntityType::class, ['class' => User::class,
                 'choice_label' => function(User $user){ return sprintf('(%d)==> %s',$user->getId(), $user->getEmail());},
-                /*'choices' => $this->userRepository->findAllEmailAlphabetical(),*/
+                /*'choices' => $this->userRepository->findAllEmailAlphabetical(),
             'placeholder' =>'Choose an Author (schlague) !!',
-            /*'invalid_message' =>'Symfony is too smart for your hacking!', 'data_class' => null*/])
-            ->add('role', ChoiceType::class, ['choices' => ['Admin' => 'ROLE_ADMIN', 'User' => 'ROLE_USER'], 'placeholder' => 'pick a role'])
+            /*'invalid_message' =>'Symfony is too smart for your hacking!', 'data_class' => null])*/
+            //->add('roles'); /*ChoiceType::class,);// ['choices' => ['Admin' => 'ROLE_ADMIN', 'User' => 'ROLE_USER'], 'placeholder' => 'pick a role'])
         ;
     }
 

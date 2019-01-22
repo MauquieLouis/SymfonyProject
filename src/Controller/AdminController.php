@@ -128,26 +128,53 @@ class AdminController extends AbstractController
     }
     /**
      * 
-     * @Route("/admin/accountControl", name="admin_accountControl")
+     * @Route("/admin/selectUser", name="admin_selectUser")
      */
-    public function AccountControl(Request $request, EntityManagerInterface $em)
-    {;
-       $form = $this->createForm(EditFormType::class);
+    public function SelectUser(Request $request)
+    {
+       $form = $this->createForm(ListFormType::class);
 
-       $form->handleRequest($request);
-       
+       $form->handleRequest($request);  
        if($form->isSubmitted() && $form->isValid())
        {
-           //dd($user);
-           $Userdata = $form->getData();
-           $Userdata->setRoles(array($Userdata['role']));
-           
-           $em->persist($Userdata);        //Pour ajouter � la base de donn�e
-           $em->flush();
-           return $this->render('Admin/validation.html.twig',['action' => 'Change save']);
+           //$test = new User();
+           //dd($form->getData());
+           //$data = $form->getData();
+           //dd($data);
+           //dd($data['User']);
+           //$this->setData($data);
+           //$userTest = new User();
+           //dd($data);
+           //dd($form->getData(['id']));
+//            $test = $data['id'];
+           //dd($test);
+           return $this->redirectToRoute('admin_accountControl',['id' => 1/*$form->getData(['id'])*/]);
        }
        
-       return $this->render('Admin/accountControl.html.twig',array('form' => $form->createView(),)); 
+       return $this->render('Admin/selectUser.html.twig',array('form' => $form->createView(),)); 
+    }
+    
+    /**
+     * @Route("/admin/accountControl/{id}", name="admin_accountControl")
+     */
+    public function AccountControl(User $user, Request $request, EntityManagerInterface $em)
+    {
+        //dd($user);
+        $form = $this->createForm(EditFormType::class);
+        
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $data = $form->getData();
+            //dd($data);
+            dd($data);
+            $user->setRoles([$form->getData()['roles']]);
+            $em->persist($user);        //Pour ajouter � la base de donn�e
+            $em->flush();
+            
+            return $this->redirectToRoute('home');//,['id' => $data->getId()]);
+        }
+        return $this->render('Admin/accountControl.html.twig',array('form' => $form->createView(),)); 
     }
     
     /**

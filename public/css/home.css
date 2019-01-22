@@ -184,6 +184,7 @@ h5
 	border-radius:14px 14px 14px 14px;
 	background:#E85656;
 	border:1px solid  #EF0303;
+	z-index:10;
 }
 .alert-success
 {
@@ -393,6 +394,7 @@ button:hover
 	border-bottom:1px Solid #888888;
 	color: #FFFFFF;
 	height:1278px;
+	z-index:1;
 		/*filter: blur(2px);*/
 
 }
