@@ -29,8 +29,8 @@
 		    	 {% endfor %}
 		    </table>#}
 	    	 {% for article in articles %}
-				<li class = "list-article"><div class ="list-article-text">{{ article.title }} : {{ article.author }} : 
-				{{ article.publishedAt ? '<span class = "publish">published</span>' : '<span class = "Nopublish">notpublished </span>'}}
+				<li class = "list-article"><div class ="list-article-text">{{ article.title }} : <i>{{ article.author }} : 
+				{{ article.publishedAt ? '<span class = "publish">published</span>' : '<span class = "Nopublish">not published </span>'}}</i>
 				<a class = "list-article-button" href ="{{ path('admin_article_edit',{'id': article.id}) }}"  >Edit Article</a></div></li>
 				</br>
 		    {% endfor %}
