@@ -114,18 +114,7 @@ class AdminController extends AbstractController
         
         return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(),));
     }
-    
-    
-    /**
-     * @Route ("/admin/list/article", name ="list_article")
-     * 
-     */
-    public function ListArticle(ArticleRepository $articleRepo)
-    {
-        $articles = $articleRepo->findAll();
-        
-        return $this->render("Admin/listArticle.html.twig", ['articles' => $articles,]);
-    }
+
     /**
      * 
      * @Route("/admin/selectUser", name="admin_selectUser")
@@ -160,7 +149,7 @@ class AdminController extends AbstractController
     public function AccountControl(User $user, Request $request, EntityManagerInterface $em)
     {
         //dd($user);
-        $form = $this->createForm(EditFormType::class);
+        $form = $this->createForm(EditFormType::class, $user);
         
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
@@ -175,6 +164,18 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('home');//,['id' => $data->getId()]);
         }
         return $this->render('Admin/accountControl.html.twig',array('form' => $form->createView(),)); 
+    }
+    
+    
+    /**
+     * @Route ("/admin/list/article", name ="list_article")
+     *
+     */
+    public function ListArticle(ArticleRepository $articleRepo)
+    {
+        $articles = $articleRepo->findAll();
+        
+        return $this->render("Admin/listArticle.html.twig", ['articles' => $articles,]);
     }
     
     /**

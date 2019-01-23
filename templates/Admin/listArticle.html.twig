@@ -9,8 +9,29 @@
 		<h3>List Article</h3>
 	</div>
 		<ul>
-		    {% for article in articles %}
-				<li>{{ article.title }} : {{ article.author }} : {{ article.publishedAt ? 'published' : 'not published'}} <a href ="{{ path('admin_article_edit',{'id': article.id}) }}">Edit Article</a></li>
+
+		    {#}<table>
+		    	<tr>
+		    		<th>Id</th>
+		    		<th>Title</th>
+		    		<th>Auteur</th>
+		    		<th>Is published</th>
+		    		<th>Edit </th>
+		    	</tr>
+		    	 {% for article in articles %}
+		    	 	<tr class = "row-list">
+		    	 		<th>{{ article.id }}</th>
+		    	 		<th>{{ article.title }}</th>
+		    	 		<th>{{ article.author }}</th>
+		    	 		<th>{{ article.publishedAt ? 'published' : 'not published'}}</th>
+		    	 		<th><a href ="{{ path('admin_article_edit',{'id': article.id}) }}" class = "list-article-button">Edit Article</a></th>
+		    	 	</tr>
+		    	 {% endfor %}
+		    </table>#}
+	    	 {% for article in articles %}
+				<li class = "list-article"><div class ="list-article-text">{{ article.title }} : {{ article.author }} : 
+				{{ article.publishedAt ? '<span class = "publish">published</span>' : '<span class = "Nopublish">notpublished </span>'}}
+				<a class = "list-article-button" href ="{{ path('admin_article_edit',{'id': article.id}) }}"  >Edit Article</a></div></li>
 				</br>
 		    {% endfor %}
 		</ul>

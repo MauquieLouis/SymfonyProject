@@ -315,7 +315,72 @@ button:hover
 	border-radius: 6px 6px 6px 6px;
 	border: 1px solid #999999;
 }
+table, th, td 
+{
+	/*border: 3px solid rgba(255,255,255,0.6);*/
+	border-collapse: collapse;
+	padding-bottom: 10px;
+	padding-right: 50px;
+	text-align: left;
 
+}
+
+tr
+{
+	width :100%;
+
+	background:rgba(255,255,255,0.4);
+}
+
+.publish
+{
+	color: rgba(100,255,100,0.9);
+}
+
+.Nopublish
+{
+	color: rgba(255,100,100,0.9);
+}
+
+.row-list
+{
+	margin-top:3px;	
+}
+
+.list-article
+{
+	width:70%;
+	height: 40px;
+	display: inline-block;
+	background: rgba(255,255,255,0.56);
+	margin-bottom : 15px;
+	margin-left : 13%;
+	border-bottom: 1px solid rgba(127,127,127,0.7);
+	border-right: 1px solid rgba(127,127,127,0.7);
+}
+
+.list-article-text
+{
+	margin-top:8px;
+	margin-left:20px;
+}
+
+.list-article-button
+{
+	margin-top:-4px;
+	text-align:center;
+	width:15%;
+	height:34px;
+	float : right;
+	margin-right: 4px;
+	background-color: rgba(100,100,255,0.5);
+	color: rgba(10,10,100,0.9);
+	border-radius:2px 2px 2px 2px;
+}
+.list-article-button:hover
+{
+	color: rgba(60,60,180,0.9);
+}
 
 .img1
 {
@@ -387,6 +452,7 @@ button:hover
 }
 .img7
 {
+
 	width:100%;
 	background-image: url("../Images/Image7.jpg");
 	background-position: center;
