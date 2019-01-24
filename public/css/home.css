@@ -464,3 +464,15 @@ tr
 		/*filter: blur(2px);*/
 
 }
+.img4-Dyn
+{
+	position:fixed;
+	width:100%;
+	background-image: url("../Images/Image4.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	border-bottom:1px Solid #888888;
+	color: #FFFFFF;
+	height:1278px;
+	z-index:1;
+}

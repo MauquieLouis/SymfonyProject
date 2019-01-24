@@ -31,4 +31,12 @@ class UserController extends AbstractController
             'controller_name' => 'UserController', 'article' => $article,
         ]);
     }
+    /**
+     * @Route("/user/Dynamic/Display", name="dynamic_display" )
+     */
+    public function DynamicDisplay()
+    {
+        
+        return $this->render('Users/dynamicDisplay.html.twig');
+    }
 }
