@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ListFormType;
+use App\Form\ArticleListFormType;
 use App\Form\EditFormType;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
@@ -24,6 +25,7 @@ class AdminController extends AbstractController
 {
     protected $data;
     
+    
     public function setData($data)
     {
         $this->data = $data;
@@ -32,6 +34,9 @@ class AdminController extends AbstractController
     {
         return $this->data;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //===========================================CREATE AN ARTICLE000=============================================//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @Route("/admin/article/new", name="admin_article")
      */
@@ -63,34 +68,12 @@ class AdminController extends AbstractController
             $this->addFlash('success','BECAUSE "VOUS BOSSEZ PAS LES MECS !!!! "');
             
             return $this->redirectToRoute('list_article');
-        }
-        /*$form = $this->createFormBuilder($article)     //creation du formulaire
-        ->add('publishedAt', DateType::class)
-        ->add('title', TextType::class)
-        ->add('slug', TextType::class)
-        ->add('content', TextareaType::class)
-        ->add('author', TextType::class,array('attr' => array('maxlength' =>15))) //Pour un maximum de 15 caract�res
-        ->add('Enregistrer', SubmitType::class,  array('label' =>'Save Article'))
-        ->getForm();
-        
-        $form->handleRequest($request);
-        
-        if (($form->getClickedButton() && 'Enregistrer' === $form->getClickedButton()->getName())) //BOUTON SAUVEGARDER + APERCU
-        {
-            $blog = $form->getData();
-            $this->setData($blog);
-            $blog->setHeartCount(rand(5,100))
-            ->setImageFilename('informatique.jpg');
-            
-            $em->persist($blog);        //Pour ajouter � la base de donn�e
-            $em->flush();
-            $request = 0;
-            return $this->render('Admin/validation.html.twig', ['action' => 'Article Save']);
-        }*/
-        
+        }       
         return $this->render('Admin/newArticle.html.twig', array('form' => $form->createView(),));
     }
-    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //===========================================EDIT AN ARTICLE===============================================//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @var int $id
      * @Route ("/admin/article/edit/{id}", name = "admin_article_edit")
@@ -98,7 +81,6 @@ class AdminController extends AbstractController
      */
     public function EditArticle(Article $article, Request $request, EntityManagerInterface $em)
     {
-        //dd($article);
         $form = $this->createForm(ArticleFormType::class, $article);
         
         $form->handleRequest($request);
@@ -110,9 +92,14 @@ class AdminController extends AbstractController
         
             $this->addFlash('success','Article updated');
             return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
+<<<<<<< HEAD
         }  
+=======
+        }    
+>>>>>>> branch 'master' of https://github.com/MauquieLouis/SymfonyProject.git
         return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(),));
     }
+<<<<<<< HEAD
     /**
      * @var int $id
      * @Route ("/admin/article/delete/{id}", name = "admin_article_delete")
@@ -144,8 +131,12 @@ class AdminController extends AbstractController
         return $this->render('Admin/validation.html.twig', array('action' => $form->createView(),));
     }
 
+=======
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //===========================================SELECTION USER================================================//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+>>>>>>> branch 'master' of https://github.com/MauquieLouis/SymfonyProject.git
     /**
-     * 
      * @Route("/admin/selectUser", name="admin_selectUser")
      */
     public function SelectUser(Request $request)
@@ -155,23 +146,14 @@ class AdminController extends AbstractController
        $form->handleRequest($request);  
        if($form->isSubmitted() && $form->isValid())
        {
-           //$test = new User();
-           //dd($form->getData());
-           //$data = $form->getData();
-           //dd($data);
-           //dd($data['User']);
-           //$this->setData($data);
-           //$userTest = new User();
-           //dd($data);
-           //dd($form->getData(['id']));
-//            $test = $data['id'];
-           //dd($test);
            return $this->redirectToRoute('admin_accountControl',['id' => 1/*$form->getData(['id'])*/]);
        }
        
        return $this->render('Admin/selectUser.html.twig',array('form' => $form->createView(),)); 
     }
-    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //===========================================ACCOUNT CONTROL===============================================//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @Route("/admin/accountControl/{id}", name="admin_accountControl")
      */
@@ -194,7 +176,9 @@ class AdminController extends AbstractController
         }
         return $this->render('Admin/accountControl.html.twig',array('form' => $form->createView(),)); 
     }
-    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //===========================================LIST ARTICLE==================================================//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     /**
      * @Route ("/admin/list/article", name ="list_article")
@@ -206,12 +190,29 @@ class AdminController extends AbstractController
         
         return $this->render("Admin/listArticle.html.twig", ['articles' => $articles,]);
     }
-    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //===========================================CONFIGURE DYNAMIC=============================================//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * @Route("/admin/DynamicStream", name="admin_dynamicStream")
+     * @Route("/admin/DynamicStream/{id}", name="admin_dynamicStream")
      */
-    public function DynamicStream()
+    public function DynamicStream(Article $article, Request $request)
     {
-        return $this->render('Admin/dynamicStream.html.twig',);
+        $form = $this->createForm(ArticleListFormType::class, $article);
+        
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        {
+           dd($form->getData());
+          // $request_details = $form->get_all_course_requests();
+           //$request_details= collect($request_details);
+           
+            return $this->redirectToRoute('user_displayArticle',['slug' => $form->getData()['slug']]);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
+        }
+        
+        return $this->render('Admin/SelectArticle.html.twig',array('form' => $form->createView(),)); 
+        //return $this->render('Admin/dynamicStream.html.twig',);
     }
+    
 }

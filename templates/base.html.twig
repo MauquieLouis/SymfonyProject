@@ -16,6 +16,7 @@
         		<!-- SI LA PERSONNE CONNECTE A LE ROLE USER : -->
         		<li ><a href="{{ path('app_logout') }}" class = "boutonAccueil">Logout</a>					</li>
         		<li ><a href="{{ path('app_account') }}" class = "boutonAccueil">Account</a>				</li>
+        		<li ><a href="{{ path('dynamic_display') }}" class = "boutonAccueil" >DynamicTest</a>		</li>
         	    {% if is_granted('ROLE_ADMIN') %}
         		<!--  SI UN ADMIN S'EST CONNECTE -->
         		<li ><a href="{{ path('home_admin')  }}" class = "boutonAccueil">Control Panel</a>		</li>
