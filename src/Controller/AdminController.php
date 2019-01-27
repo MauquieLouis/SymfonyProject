@@ -92,14 +92,12 @@ class AdminController extends AbstractController
         
             $this->addFlash('success','Article updated');
             return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
-<<<<<<< HEAD
+
         }  
-=======
-        }    
->>>>>>> branch 'master' of https://github.com/MauquieLouis/SymfonyProject.git
+
         return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(),));
     }
-<<<<<<< HEAD
+
     /**
      * @var int $id
      * @Route ("/admin/article/delete/{id}", name = "admin_article_delete")
@@ -131,11 +129,11 @@ class AdminController extends AbstractController
         return $this->render('Admin/validation.html.twig', array('action' => $form->createView(),));
     }
 
-=======
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //===========================================SELECTION USER================================================//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
->>>>>>> branch 'master' of https://github.com/MauquieLouis/SymfonyProject.git
+
     /**
      * @Route("/admin/selectUser", name="admin_selectUser")
      */
