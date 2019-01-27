@@ -130,7 +130,7 @@ class AdminController extends AbstractController
         
         if (($form->getClickedButton() && 'Delete' === $form->getClickedButton()->getName()))
         {
-            $em->remove($article);        //Pour ajouter � la base de donn�e
+            $em->remove($article);        //Pour supprimer un article.
             $em->flush();
             
             $this->addFlash('success','Article delete');
@@ -138,8 +138,6 @@ class AdminController extends AbstractController
         }
         if (($form->getClickedButton() && 'NoDelete' === $form->getClickedButton()->getName()))
         {
-            //$em->remove($article);        //Pour ajouter � la base de donn�e
-            //$em->flush();
             $this->addFlash('success','Article delete');
             return $this->redirectToRoute('list_article',);
         }
