@@ -8,6 +8,10 @@
 	<div class ="contenuTitre">
 		<h3>Validation Page</h3>
 	</div>
-		{{ action }}
+		<h3>Are you sure ?</h3>
+		{{ form_start(action) }}
+			<!-- <button type="Submit" class ="", value ="Delete">YES, Delete This article</button>
+			<button type="Submit" class ="" value = "NoDelete">BACK</button> -->
+		{{ form_end(action) }}
 	</div>
 {% endblock %}

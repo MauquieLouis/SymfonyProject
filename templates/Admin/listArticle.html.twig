@@ -31,7 +31,7 @@
 	    	 {% for article in articles %}
 				<li class = "list-article"><div class ="list-article-text">{{ article.title }} : <i>{{ article.author }} : 
 				{{ article.publishedAt ? '<span class = "publish">published</span>' : '<span class = "Nopublish">not published </span>'}}</i>
-				<a class = "list-article-button" href ="{{ path('admin_article_edit',{'id': article.id}) }}"  >Edit Article</a></div></li>
+				<a class = "list-article-button-delete" href ="{{ path('admin_article_delete',{'id' : article.id}) }}">Del. Art.</a><a class = "list-article-button-edit" href ="{{ path('admin_article_edit',{'id': article.id}) }}"  >Edit Article</a></div></li>
 				</br>
 		    {% endfor %}
 		</ul>

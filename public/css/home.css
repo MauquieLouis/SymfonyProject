@@ -365,7 +365,7 @@ tr
 	margin-left:20px;
 }
 
-.list-article-button
+.list-article-button-edit
 {
 	margin-top:-4px;
 	text-align:center;
@@ -377,10 +377,28 @@ tr
 	color: rgba(10,10,100,0.9);
 	border-radius:2px 2px 2px 2px;
 }
-.list-article-button:hover
+.list-article-button-edit:hover
 {
 	color: rgba(60,60,180,0.9);
 }
+
+.list-article-button-delete
+{
+	margin-top:-4px;
+	text-align:center;
+	width:9%;
+	height:34px;
+	float : right;
+	margin-right: 4px;
+	background-color: rgba(255,100,100,0.5);
+	color: rgba(10,10,100,0.9);
+	border-radius:2px 2px 2px 2px;
+}
+.list-article-button-delete:hover
+{
+	color: rgba(180,60,60,0.9);
+}
+
 
 .img1
 {

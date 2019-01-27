@@ -14,6 +14,7 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 /**
  *  @IsGranted("ROLE_ADMIN")
  *
@@ -109,10 +110,40 @@ class AdminController extends AbstractController
         
             $this->addFlash('success','Article updated');
             return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
-        }
-        
-        
+        }  
         return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(),));
+    }
+    /**
+     * @var int $id
+     * @Route ("/admin/article/delete/{id}", name = "admin_article_delete")
+     * @IsGranted("ROLE_ADMIN", subject="article")
+     */
+    public function DeleteArticle(Article $article, Request $request, EntityManagerInterface $em)
+    {
+        //dd($article);
+        $form = $this->createFormBuilder()
+        ->add('Delete', SubmitType::class, ['label' => 'YES, Delete this article', 'attr' => ['class' => 'Btn-delete-Article']])
+        ->add('NoDelete', SubmitType::class, ['label' => 'BACK', 'attr' => ['class' => 'Btn-back-listArticle']])
+        ->getForm();
+        
+        $form->handleRequest($request);
+        
+        if (($form->getClickedButton() && 'Delete' === $form->getClickedButton()->getName()))
+        {
+            $em->remove($article);        //Pour ajouter � la base de donn�e
+            $em->flush();
+            
+            $this->addFlash('success','Article delete');
+            return $this->redirectToRoute('list_article', );
+        }
+        if (($form->getClickedButton() && 'NoDelete' === $form->getClickedButton()->getName()))
+        {
+            //$em->remove($article);        //Pour ajouter � la base de donn�e
+            //$em->flush();
+            $this->addFlash('success','Article delete');
+            return $this->redirectToRoute('list_article',);
+        }
+        return $this->render('Admin/validation.html.twig', array('action' => $form->createView(),));
     }
 
     /**
