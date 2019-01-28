@@ -1,14 +1,20 @@
 {% block stylesheets %}
     <link href="{{ asset('css/home.css') }}" rel="stylesheet" />
+    
 {% endblock %}
 {% block body %}
 	<div class ="img4-Dyn">
 		<div class ="contenuTitre">
-			<h3>{{ ga_tracking }}</h3>
+			<h3>TEST</h3>
 		</div>
 		<!--=========ARTICLE DYNAMIQUE==========-->
 		<div class =" ARTICLE-DYN">
 			
 		</div>
+		<div id = "Dynamique">
+		</div>
+		<button onclick="setInterval(AffichageDyn,1000)">LANCER L'AFFICHAGE DYNAMIQUE</button>
+  			<script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
+
 	</div>
 {% endblock %}
