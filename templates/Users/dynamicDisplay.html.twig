@@ -12,8 +12,13 @@
 			
 		</div>
 		<div id = "Dynamique">
+		<ul id ="liste">
+		    {% for article in articles %}
+				<li class = "list-article">{{ article.title }} : </br> {{ article.content }}</li>
+		    {% endfor %}
+	    </ul>
 		</div>
-		<button onclick="setInterval(AffichageDyn,1000)">LANCER L'AFFICHAGE DYNAMIQUE</button>
+		<button onclick="setInterval(AffichageDyn,1000)" id ="btn">LANCER L'AFFICHAGE DYNAMIQUE</button>
   			<script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
 
 	</div>
