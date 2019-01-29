@@ -2,24 +2,22 @@
 
 //var Text = [];
 var i = -1;
-var elem= [[]];
+
 
 var lis = document.getElementById("liste").getElementsByTagName("li");
 
-for (var y =0; y<lis.length; y++)
-{
-	elem[y] = lis[y].innerHTML.split("\\");
-}
+//var test = "Salut:Remi"
+var elem = lis[0].innerHTML.split("\\");
 
-//alert(elem[1][1]);
+
+alert(elem[1]);
 
 
 
  
- function Affichagetext(text, img)
+ function Affichagetext(text)
  {
  	document.getElementById('Dynamique').innerHTML = text;
- 	document.getElementById('Affichage').innerHTML = img;
  	//document.getElementById('btn').remove();
  }
 
@@ -31,10 +29,5 @@ for (var y =0; y<lis.length; y++)
  		{
  			i=0;
  		}
- 		Affichagetext(elem[i][0],elem[i][1]);		
- }
- 
- function Clear()
- {
-	 	document.getElementById('Dynamique').innerHTML = '';
+ 		Affichagetext(lis[i].innerHTML);		
  }

@@ -29,6 +29,19 @@ li
 	cursor: cell;
 	text-decoration: underline;
 }
+#Affichage
+{
+	text-align:center;
+	margin-top : 80px;
+}
+#Dynamique
+{
+	color:#CCCCCC;
+	text-align:center;
+	cursor: cell;
+	text-decoration: underline;
+	margin-top : 50px;
+}
 
 h1
 {
@@ -145,7 +158,7 @@ p
 	border-bottom:1px solid #FFFFFF;
 	background:rgba(255,255,255,0.2);
 	width:80%;
-	margin-top:150px;
+	margin-top:200px;
 	position: absolute; /* postulat de départ */
 	left: 50%; /* à 50%/50% du parent référent */
 	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
@@ -156,7 +169,14 @@ p
 	margin-left:1%;
 	border-top:1px solid #FFFFFF;
 	border-bottom:1px solid #FFFFFF;
+
 }
+.txt-txt
+{
+	
+}
+
+
 h5
 {
 	margin-top:5px;
@@ -245,7 +265,7 @@ body
 .form
 {
 	width:81%;
-	height:550px;
+	height:600px;
 	margin-top:300px;
 	background:rgba(255,255,255,0.2);
 	position: absolute; /* postulat de départ */
@@ -398,7 +418,20 @@ tr
 {
 	color: rgba(180,60,60,0.9);
 }
+.article-img
+{
+	opacity:0.5;
+	width	: 350px;
+	height:auto;
 
+}
+
+.Image-Display-Article
+{
+	
+	
+	/*height	: 350px;*/
+}
 
 .img1
 {

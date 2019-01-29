@@ -64,8 +64,7 @@ class AdminController extends AbstractController
             $em->flush();
             
             $this->addFlash('success','Article Created ! you are the boss :) !');
-            $this->addFlash('success','Not the big boss like Mr BOYER');
-            $this->addFlash('success','BECAUSE "VOUS BOSSEZ PAS LES MECS !!!! "');
+
             
             return $this->redirectToRoute('list_article');
         }       
