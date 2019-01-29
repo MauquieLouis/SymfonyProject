@@ -158,24 +158,35 @@ p
 	border-bottom:1px solid #FFFFFF;
 	background:rgba(255,255,255,0.2);
 	width:80%;
-	margin-top:200px;
+	margin-top:250px;
 	position: absolute; /* postulat de départ */
 	left: 50%; /* à 50%/50% du parent référent */
 	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
 }
 .txt
 {
+	height : 300px;
 	width:98%;
 	margin-left:1%;
 	border-top:1px solid #FFFFFF;
 	border-bottom:1px solid #FFFFFF;
 
 }
-.txt-txt
+.img-txt
 {
-	
+	display: inline-block;
+	float : left;
+	height : 100%;
 }
 
+.text-display-article
+{
+	margin-left:6px;
+	height : 100%;
+	float : left;
+	width : 630px;
+	
+}
 
 h5
 {
@@ -186,7 +197,7 @@ h5
 .info
 {
 
-	float:left;
+	text-align:left;
 }
 /*-----------------------------*/
 
