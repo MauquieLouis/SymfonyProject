@@ -165,7 +165,7 @@ p
 }
 .txt
 {
-	height : 300px;
+	height : 350px;
 	width:98%;
 	margin-left:1%;
 	border-top:1px solid #FFFFFF;
@@ -388,6 +388,32 @@ tr
 	margin-left : 13%;
 	border-bottom: 1px solid rgba(127,127,127,0.7);
 	border-right: 1px solid rgba(127,127,127,0.7);
+}
+.list-article-stream
+{
+	width: 50%;
+	height: 30px;
+	background: rgba(255,255,255,0.56);
+	margin-bottom : 15px;
+	/*margin-left : 13%;*/
+	
+	border-bottom: 1px solid rgba(127,127,127,0.7);
+	border-right: 1px solid rgba(127,127,127,0.7);
+
+	/*left: 50%;  à 50%/50% du parent référent */
+	transform: translate(50%,-50%); /* décalage de 50% de sa propre taille */
+
+
+}
+.elem-list-text
+{
+	margin-top: -38px;
+}
+
+.elem-list-check
+{
+	margin-top: -3px;
+	margin-left:90%;
 }
 
 .list-article-text

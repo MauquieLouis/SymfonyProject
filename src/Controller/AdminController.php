@@ -39,6 +39,7 @@ class AdminController extends AbstractController
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @Route("/admin/article/new", name="admin_article")
+     * 
      */
     public function NewArticle(Request $request, EntityManagerInterface $em)
     {
@@ -193,9 +194,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/DynamicStream/", name="admin_dynamicStream")
      */
-    public function DynamicStream(Article $article, Request $request)
+    public function DynamicStream(Request $request, ArticleRepository $articleRepo)
     {
-        $form = $this->createForm(ArticleListFormType::class, $article);
+        $articles = $articleRepo->findAll();
+        $form = $this->createForm(ArticleListFormType::class);
         
         $form->handleRequest($request);
         
@@ -205,10 +207,10 @@ class AdminController extends AbstractController
           // $request_details = $form->get_all_course_requests();
            //$request_details= collect($request_details);
            
-            return $this->redirectToRoute('user_displayArticle',['slug' => $form->getData()['slug']]);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
+            return $this->redirectToRoute('user_displayArticle',);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
         }
         
-        return $this->render('Admin/SelectArticle.html.twig',array('form' => $form->createView(),)); 
+        return $this->render('Admin/SelectArticle.html.twig',array('form' => $form->createView(), 'articles' => $articles)); 
         //return $this->render('Admin/dynamicStream.html.twig',);
     }
     

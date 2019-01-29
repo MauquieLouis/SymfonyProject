@@ -15,7 +15,7 @@
     		<div id = "Dynamique">
         		<ul id ="liste">
         		    {% for article in articles %}
-        				<li class = "list-article">{{ article.title }} : {{ article.content }}\<img class="article-img" src="{{ asset('Images/'~article.imageFilename) }}"></li>
+        				<li class = "list-article">{{ article.title }} : {{ article.content }}\ <img class="article-img" src="{{ asset('Images/'~article.imageFilename) }}"></li>
         		    {% endfor %}
         	    </ul>
     		</div>
@@ -23,9 +23,9 @@
     		</div>
 		</div>
 		
-		<!-- <button onclick="setInterval(AffichageDyn,3000)" id ="btn">LANCER L'AFFICHAGE DYNAMIQUE</button> -->
+		<button onclick="setInterval(AffichageDyn,3000)" id ="btn">LANCER L'AFFICHAGE DYNAMIQUE</button>
 		<script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
-		<script>Clear(); setInterval(AffichageDyn,1500)</script>
+		<!-- <script>Clear(); setInterval(AffichageDyn,1500)</script>  -->
 
 	</div>
 {% endblock %}

@@ -7,10 +7,19 @@
 		<div class ="contenuTitre">
 			<h3>Configure Dynamic </h3>
 		</div>
-		{{ form_start(form) }}
-			{{ form_widget(form) }}
-			<input type="submit" class="btn" value="Select Article" />
-		{{ form_end(form) }}
+		<ul>
+			{% for article in articles %}
+				
+				<li class = "list-article-stream">
+					<div class = "elem-list-check">
+					<input type="checkbox" id="scales" name="{{ article.slug }}" checked></div>
+					<div class = "elem-list-text">
+				    {{ article.title }} : {{ article.slug }}</div>
+				</li>
+				
+		    {% endfor %}
+	    </ul>
+			<input type="submit" class="btn" value="Select Article(s)" />
 	</div>
 
 {% endblock %}
