@@ -155,7 +155,7 @@ class AdminController extends AbstractController
     //===========================================CONFIGURE DYNAMIC=============================================//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * @Route("/admin/DynamicStream/{id}", name="admin_dynamicStream")
+     * @Route("/admin/DynamicStream/", name="admin_dynamicStream")
      */
     public function DynamicStream(Article $article, Request $request)
     {
