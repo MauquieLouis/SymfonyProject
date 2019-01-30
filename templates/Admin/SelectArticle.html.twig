@@ -7,17 +7,24 @@
 		<div class ="contenuTitre">
 			<h3>Configure Dynamic </h3>
 		</div>
-		<ul>
-			{% for article in articles %}
-				
-				<li class = "list-article-stream">
-					<div class = "elem-list-check">
-					<input type="checkbox" id="scales" name="{{ article.slug }}" ></div>
-					<div class = "elem-list-text">
-				    {{ article.title }} : {{ article.slug }}</div>
-				</li>
-				
-		    {% endfor %}
-	    </ul>
+		<form name="myForm" onsubmit = "return validateForm()" method="post">
+    		<ul id ="checkList">
+    			{% for article in articles %}
+    				<input type="checkbox" id="checke" name="{{ article.slug }}" >
+    				<li class = "list-article-stream">
+    					<div class = "elem-list-check" id ="divCheck">
+    						
+    					</div>
+    					<div class = "elem-list-text">
+    				        {{ article.title }} : {{ article.slug }}
+    				    </div>
+    				</li>
+    				
+    		    {% endfor %}
+    	    </ul>
+		    
 			<input type="submit" class="btn btn-Select-Article" value="Select Article(s)" />
+		</form>
+		<script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
+	</div>
 {% endblock %}

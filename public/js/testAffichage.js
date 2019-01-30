@@ -38,3 +38,22 @@ for (var y =0; y<lis.length; y++)
  {
 	 	document.getElementById('Dynamique').innerHTML = '';
  }
+ 
+ function validateForm()
+ {
+	 var Checklis = document.getElementById("checkList").getElementById("checke").checked;
+	 
+	 alert(Checklis);
+	 
+	 for(var i = 0; i < Checklis.length; i++)
+	 {
+		 
+		 //alert('test');
+		 /*if(Checklis[i].checked)
+		 {
+			 alert('ONE CHECK +');
+		 }*/
+	 }
+
+	 
+ }
