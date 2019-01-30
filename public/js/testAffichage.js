@@ -42,15 +42,20 @@ for (var y =0; y<lis.length; y++)
  
  function ComboBox()
  {
-	 var x = document.createElement("SELECT");
-	 x.setAttribute("id", "mySelect");
-	 document.body.appendChild(x);
-	 
-	var z = document.createElement("option");
-	z.setAttribute("value", "volvocar");
-	var t = document.createTextNode("Volvo");
-	z.appendChild(t);
-	document.getElementById("mySelect").appendChild(z);
+	  //alert('click');
+	  var x = document.createElement("SELECT");
+	  x.setAttribute("id", "mySelect");
+	  document.getElementById('Dynamique').appendChild(x);
+
+	  for(var i in lis)
+	  {
+		  var z = document.createElement("option");
+		  z.setAttribute("value", "article");
+		  var t = document.createTextNode(lis[i].innerHTML);
+		  z.appendChild(t);
+		  document.getElementById("mySelect").appendChild(z);
+	  }
+
  
  }
  
