@@ -37,23 +37,21 @@ for (var y =0; y<lis.length; y++)
  function Clear()
  {
 	 	document.getElementById('Dynamique').innerHTML = '';
+
  }
  
- function validateForm()
+ function ComboBox()
  {
-	 var Checklis = document.getElementById("checkList").getElementById("checke").checked;
+	 var x = document.createElement("SELECT");
+	 x.setAttribute("id", "mySelect");
+	 document.body.appendChild(x);
 	 
-	 alert(Checklis);
-	 
-	 for(var i = 0; i < Checklis.length; i++)
-	 {
-		 
-		 //alert('test');
-		 /*if(Checklis[i].checked)
-		 {
-			 alert('ONE CHECK +');
-		 }*/
-	 }
-
-	 
+	var z = document.createElement("option");
+	z.setAttribute("value", "volvocar");
+	var t = document.createTextNode("Volvo");
+	z.appendChild(t);
+	document.getElementById("mySelect").appendChild(z);
+ 
  }
+ 
+ 
