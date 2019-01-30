@@ -1,14 +1,31 @@
 {% block stylesheets %}
     <link href="{{ asset('css/home.css') }}" rel="stylesheet" />
+    
 {% endblock %}
 {% block body %}
 	<div class ="img4-Dyn">
 		<div class ="contenuTitre">
-			<h3>{{ ga_tracking }}</h3>
+			<h3>TEST</h3>
 		</div>
 		<!--=========ARTICLE DYNAMIQUE==========-->
 		<div class =" ARTICLE-DYN">
-			
+
 		</div>
+		<div class = "afficheur-D">
+    		<div id = "Dynamique">
+        		<ul id ="liste">
+        		    {% for article in articles %}
+        				<li class = "list-article">{{ article.title }} : {{ article.content }}\ <img class="article-img" src="{{ asset('Images/'~article.imageFilename) }}"></li>
+        		    {% endfor %}
+        	    </ul>
+    		</div>
+    		<div id = "Affichage">
+    		</div>
+		</div>
+		
+		<!-- <button onclick="setInterval(AffichageDyn,3000)" id ="btn">LANCER L'AFFICHAGE DYNAMIQUE</button> -->
+		<script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
+		<script>Clear(); setInterval(AffichageDyn,1500)</script>
+
 	</div>
 {% endblock %}

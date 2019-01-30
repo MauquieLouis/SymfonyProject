@@ -15,6 +15,7 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 /**
  *  @IsGranted("ROLE_ADMIN")
  *
@@ -38,6 +39,7 @@ class AdminController extends AbstractController
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @Route("/admin/article/new", name="admin_article")
+     * 
      */
     public function NewArticle(Request $request, EntityManagerInterface $em)
     {
@@ -63,8 +65,7 @@ class AdminController extends AbstractController
             $em->flush();
             
             $this->addFlash('success','Article Created ! you are the boss :) !');
-            $this->addFlash('success','Not the big boss like Mr BOYER');
-            $this->addFlash('success','BECAUSE "VOUS BOSSEZ PAS LES MECS !!!! "');
+
             
             return $this->redirectToRoute('list_article');
         }       
@@ -91,12 +92,48 @@ class AdminController extends AbstractController
         
             $this->addFlash('success','Article updated');
             return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
-        }    
+
+        }  
+
         return $this->render('Admin/editArticle.html.twig', array('articleForm' => $form->createView(),));
     }
+
+    /**
+     * @var int $id
+     * @Route ("/admin/article/delete/{id}", name = "admin_article_delete")
+     * @IsGranted("ROLE_ADMIN", subject="article")
+     */
+    public function DeleteArticle(Article $article, Request $request, EntityManagerInterface $em)
+    {
+        //dd($article);
+        $form = $this->createFormBuilder()
+        ->add('Delete', SubmitType::class, ['label' => 'YES, Delete this article', 'attr' => ['class' => 'Btn-delete-Article']])
+        ->add('NoDelete', SubmitType::class, ['label' => 'BACK', 'attr' => ['class' => 'Btn-back-listArticle']])
+        ->getForm();
+        
+        $form->handleRequest($request);
+        
+        if (($form->getClickedButton() && 'Delete' === $form->getClickedButton()->getName()))
+        {
+            $em->remove($article);        //Pour supprimer un article.
+            $em->flush();
+            
+            $this->addFlash('success','Article delete');
+            return $this->redirectToRoute('list_article', );
+        }
+        if (($form->getClickedButton() && 'NoDelete' === $form->getClickedButton()->getName()))
+        {
+            $this->addFlash('success','Article delete');
+            return $this->redirectToRoute('list_article',);
+        }
+        return $this->render('Admin/validation.html.twig', array('action' => $form->createView(),));
+    }
+
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //===========================================SELECTION USER================================================//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * @Route("/admin/selectUser", name="admin_selectUser")
      */
@@ -157,9 +194,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/DynamicStream/", name="admin_dynamicStream")
      */
-    public function DynamicStream(Article $article, Request $request)
+    public function DynamicStream(Request $request, ArticleRepository $articleRepo)
     {
-        $form = $this->createForm(ArticleListFormType::class, $article);
+        $articles = $articleRepo->findAll();
+        $form = $this->createForm(ArticleListFormType::class);
         
         $form->handleRequest($request);
         
@@ -169,10 +207,10 @@ class AdminController extends AbstractController
           // $request_details = $form->get_all_course_requests();
            //$request_details= collect($request_details);
            
-            return $this->redirectToRoute('user_displayArticle',['slug' => $form->getData()['slug']]);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
+            return $this->redirectToRoute('user_displayArticle',);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
         }
         
-        return $this->render('Admin/SelectArticle.html.twig',array('form' => $form->createView(),)); 
+        return $this->render('Admin/SelectArticle.html.twig',array('form' => $form->createView(), 'articles' => $articles)); 
         //return $this->render('Admin/dynamicStream.html.twig',);
     }
     

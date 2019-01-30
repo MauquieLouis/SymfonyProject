@@ -27,11 +27,13 @@ class ArticleFormType extends AbstractType
             ->add('title', TextType::class, ['help' => 'Put a unique title for this article dussutour !',])
             ->add('content')
             ->add('publishedAt', null,['widget' => 'single_text'])
+            ->add('ImageFileName', TextType::class, ['help' => 'Put the image name'])
             ->add('author', EntityType::class, ['class' => User::class,
             'choice_label' => function(User $user){ return sprintf('(%d)==> %s',$user->getId(), $user->getEmail());},
             /*'choices' => $this->userRepository->findAllEmailAlphabetical(),*/
             'placeholder' =>'Choose an Author (schlague) !!',
             /*'invalid_message' =>'Symfony is too smart for your hacking!', 'data_class' => null*/])
+            
            /* ->add('author', EntityType::class,['class' => User::class, 'choice_label' => function(User $user)
             { return sprintf('(%d) %s ==> %s',$user->getId(), $user->getFirstName(), $user->getEmail());}, 'placeholder' => 'Choose an Author (schlague) !!'])*/
         ;

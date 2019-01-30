@@ -29,6 +29,19 @@ li
 	cursor: cell;
 	text-decoration: underline;
 }
+#Affichage
+{
+	text-align:center;
+	margin-top : 80px;
+}
+#Dynamique
+{
+	color:#CCCCCC;
+	text-align:center;
+	cursor: cell;
+	text-decoration: underline;
+	margin-top : 50px;
+}
 
 h1
 {
@@ -145,18 +158,36 @@ p
 	border-bottom:1px solid #FFFFFF;
 	background:rgba(255,255,255,0.2);
 	width:80%;
-	margin-top:150px;
+	margin-top:250px;
 	position: absolute; /* postulat de départ */
 	left: 50%; /* à 50%/50% du parent référent */
 	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
 }
 .txt
 {
+	height : 350px;
 	width:98%;
 	margin-left:1%;
 	border-top:1px solid #FFFFFF;
 	border-bottom:1px solid #FFFFFF;
+
 }
+.img-txt
+{
+	display: inline-block;
+	float : left;
+	height : 100%;
+}
+
+.text-display-article
+{
+	margin-left:6px;
+	height : 100%;
+	float : left;
+	width : 630px;
+	
+}
+
 h5
 {
 	margin-top:5px;
@@ -166,7 +197,7 @@ h5
 .info
 {
 
-	float:left;
+	text-align:left;
 }
 /*-----------------------------*/
 
@@ -245,7 +276,7 @@ body
 .form
 {
 	width:81%;
-	height:550px;
+	height:600px;
 	margin-top:300px;
 	background:rgba(255,255,255,0.2);
 	position: absolute; /* postulat de départ */
@@ -358,6 +389,32 @@ tr
 	border-bottom: 1px solid rgba(127,127,127,0.7);
 	border-right: 1px solid rgba(127,127,127,0.7);
 }
+.list-article-stream
+{
+	width: 50%;
+	height: 30px;
+	background: rgba(255,255,255,0.56);
+	margin-bottom : 15px;
+	/*margin-left : 13%;*/
+	
+	border-bottom: 1px solid rgba(127,127,127,0.7);
+	border-right: 1px solid rgba(127,127,127,0.7);
+
+	/*left: 50%;  à 50%/50% du parent référent */
+	transform: translate(50%,-50%); /* décalage de 50% de sa propre taille */
+
+
+}
+.elem-list-text
+{
+	margin-top: -38px;
+}
+
+.elem-list-check
+{
+	margin-top: -3px;
+	margin-left:90%;
+}
 
 .list-article-text
 {
@@ -365,7 +422,7 @@ tr
 	margin-left:20px;
 }
 
-.list-article-button
+.list-article-button-edit
 {
 	margin-top:-4px;
 	text-align:center;
@@ -377,9 +434,40 @@ tr
 	color: rgba(10,10,100,0.9);
 	border-radius:2px 2px 2px 2px;
 }
-.list-article-button:hover
+.list-article-button-edit:hover
 {
 	color: rgba(60,60,180,0.9);
+}
+
+.list-article-button-delete
+{
+	margin-top:-4px;
+	text-align:center;
+	width:9%;
+	height:34px;
+	float : right;
+	margin-right: 4px;
+	background-color: rgba(255,100,100,0.5);
+	color: rgba(10,10,100,0.9);
+	border-radius:2px 2px 2px 2px;
+}
+.list-article-button-delete:hover
+{
+	color: rgba(180,60,60,0.9);
+}
+.article-img
+{
+	opacity:0.5;
+	width	: 350px;
+	height:auto;
+
+}
+
+.Image-Display-Article
+{
+	
+	
+	/*height	: 350px;*/
 }
 
 .img1

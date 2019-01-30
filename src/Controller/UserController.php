@@ -10,6 +10,15 @@ use App\Entity\Article;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
+use App\Repository\ArticleRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Psr\Log\LoggerInterface;
+
+/**
+ *
+ * @IsGranted("ROLE_USER")
+ *
+ */
 
 class UserController extends AbstractController
 {
@@ -34,9 +43,20 @@ class UserController extends AbstractController
     /**
      * @Route("/user/Dynamic/Display", name="dynamic_display" )
      */
-    public function DynamicDisplay()
+    public function DynamicDisplay(ArticleRepository $articleRepo)
     {
+        $articles = $articleRepo->findAll();
         
-        return $this->render('Users/dynamicDisplay.html.twig');
+        return $this->render('Users/dynamicDisplay.html.twig', ['articles' => $articles]);
+    }
+    
+    /**
+     * @Route("/account", name="app_account")
+     */
+    public function index(LoggerInterface $logger)
+    {
+        $logger->debug('Checking account page for'.$this->getUser()->getEmail());
+        // dd($this->getUser()->getFirstName());
+        return $this->render('account/index.html.twig', []);
     }
 }
