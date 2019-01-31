@@ -4,20 +4,24 @@
 
 {% block body %}
 	<div class ="img7">
-		<div class ="contenuTitre">
-			<h3>Configure Dynamic </h3>
-		</div>
-		<div id = "Dynamique">
-    		<ul id ="liste">
-    		    {% for article in articles %}
-					<li class = "list-article">{{ article.title }} : {{ article.content }}</li>
-    		    {% endfor %}
-	   		 </ul>
-	   </div>
-			<input type="submit" class="btn btn-Select-Article" value="Select Article(s)" onclick="ComboBox()" />
-		</form>
-
+	<div class ="contenuTitre">
+		<h3>Configure Dynamic </h3>
+	</div>
+	{{ form_start(form) }}
+        <div id = "Dynamique">
+            <ul id ="liste">
+            
+                {% for article in articles %}
+                	{#}<li>F :{{ form_start(tabl) }}{{ form_widget(tabl) }}{{ form_end(tabl) }}</li>#}
+					{#}<li><input type="checkbox" name="vehicle1" value="{{ article.id }}"> {{ article.title }}<br></li>#}
+                {% endfor %}
+            
+            </ul>
+        </div>
+	    {{ form_widget(form) }}
+    	<button type="Submit" class="">submit</button>
+	{{ form_end(form) }}
 	</div>
 	<script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
-	<script>Clear(); ComboBox();</script>
+	<script>//Clear();</script>
 {% endblock %}

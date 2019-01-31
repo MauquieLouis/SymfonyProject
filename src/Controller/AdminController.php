@@ -35,7 +35,7 @@ class AdminController extends AbstractController
         return $this->data;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //===========================================CREATE AN ARTICLE000=============================================//
+    //===========================================CREATE AN ARTICLE=============================================//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @Route("/admin/article/new", name="admin_article")
@@ -194,23 +194,40 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/DynamicStream/", name="admin_dynamicStream")
      */
-    public function DynamicStream(Request $request, ArticleRepository $articleRepo)
+    public function DynamicStream(Request $request, ArticleRepository $articleRepo, EntityManagerInterface $em)
     {
+        
         $articles = $articleRepo->findAll();
-        $form = $this->createForm(ArticleListFormType::class);
-        
+        $form= $this->createForm(ArticleListFormType::class,);
+         
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid())
+        if($form->isSubmitted() && $form->isValid())    //Si le form est submit
         {
-           dd($form->getData());
-          // $request_details = $form->get_all_course_requests();
-           //$request_details= collect($request_details);
+
+           foreach($articles as $art)                   //On parcours les articles
+           {
+                //-----PARCOUR DES ARTICLES DE LA BDD------//
+                
+               $art->setChecked($form->getData()[$art->getSlug()]); 
+               //------------------EXPLICATION DE LA LIGNE AU DESSUS---------------//
+               /*
+                * 1°.  Aller voir le formulaire ArticleListFormType.php
+                * 
+                * Pour l'article en question on modifie la propriée checked (de la BDD (Base de Donne))
+                * 
+                * On lui passe en paramètre le retour de la valeur de la checkbox avec le même slug que l'article
+                * 
+                */
+               $em->persist($art);        //Pour ajouter à la base de donnee
+               $em->flush();
+           }
            
-            return $this->redirectToRoute('user_displayArticle',);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
+           return $this->redirectToRoute('home',);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
         }
-        
-        return $this->render('Admin/SelectArticle.html.twig',array('form' => $form->createView(), 'articles' => $articles)); 
+        return $this->render('Admin/SelectArticle.html.twig',
+            array('form' => $form->createView(),
+                'articles' => $articles,
+                )); 
         //return $this->render('Admin/dynamicStream.html.twig',);
     }
     

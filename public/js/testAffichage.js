@@ -45,9 +45,13 @@ for (var y =0; y<lis.length; y++)
 	  //alert('click');
 	  var x = document.createElement("SELECT");
 	  x.setAttribute("id", "mySelect");
+	  x.setAttribute("value", "tet");
 	  document.getElementById('Dynamique').appendChild(x);
+	  var z = document.createElement("option");
+	  z.setAttribute("value", "article");
+	  var t = document.createTextNode("Select an Article");
 
-	  for(var i in lis)
+	  for(var i = 0; i<lis.length; i++)
 	  {
 		  var z = document.createElement("option");
 		  z.setAttribute("value", "article");

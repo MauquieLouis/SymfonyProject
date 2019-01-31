@@ -53,6 +53,11 @@ class Article
      */
     private $ImageFileName;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $checked;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,6 +164,18 @@ class Article
             ->atPath('title')
             ->addViolation();
         }
+    }
+
+    public function getChecked(): ?bool
+    {
+        return $this->checked;
+    }
+
+    public function setChecked(?bool $checked): self
+    {
+        $this->checked = $checked;
+
+        return $this;
     }
 
 }
