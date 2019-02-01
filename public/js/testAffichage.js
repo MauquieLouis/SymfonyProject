@@ -18,8 +18,8 @@ for (var y =0; y<lis.length; y++)
  
  function Affichagetext(text, img)
  {
- 	document.getElementById('Dynamique').innerHTML = text;
- 	document.getElementById('Affichage').innerHTML = img;
+ 	document.getElementById('Dynamique-txt').innerHTML = text;
+ 	document.getElementById('Dynamique-img').innerHTML = img;
  	//document.getElementById('btn').remove();
  }
 
@@ -36,8 +36,8 @@ for (var y =0; y<lis.length; y++)
  
  function Clear()
  {
-	 	document.getElementById('Dynamique').innerHTML = '';
-
+	 	document.getElementById('Dynamique-txt').innerHTML = '';
+	 	document.getElementById('Dynamique-img').innerHTML = '';
  }
  
  function ComboBox()

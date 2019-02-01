@@ -208,21 +208,21 @@ class AdminController extends AbstractController
            {
                 //-----PARCOUR DES ARTICLES DE LA BDD------//
                 
-               $art->setChecked($form->getData()[$art->getSlug()]); 
+               $art->setChecked($form->getData()[$art->getId()]); 
                //------------------EXPLICATION DE LA LIGNE AU DESSUS---------------//
                /*
                 * 1°.  Aller voir le formulaire ArticleListFormType.php
                 * 
                 * Pour l'article en question on modifie la propriée checked (de la BDD (Base de Donne))
                 * 
-                * On lui passe en paramètre le retour de la valeur de la checkbox avec le même slug que l'article
+                * On lui passe en paramètre le retour de la valeur de la checkbox avec le même ID que l'article
                 * 
                 */
                $em->persist($art);        //Pour ajouter à la base de donnee
                $em->flush();
            }
            
-           return $this->redirectToRoute('home',);//$form->getData()['slug']]);//['id' => 1/*$form->getData(['id'])*/]);
+           return $this->redirectToRoute('home_admin',);
         }
         return $this->render('Admin/SelectArticle.html.twig',
             array('form' => $form->createView(),

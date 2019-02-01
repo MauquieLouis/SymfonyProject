@@ -8,11 +8,8 @@
 			<h3>TEST</h3>
 		</div>
 		<!--=========ARTICLE DYNAMIQUE==========-->
-		<div class =" ARTICLE-DYN">
-
-		</div>
-		<div class = "afficheur-D">
-    		<div id = "Dynamique">
+		<div class = "Dynamique-Case-Display">
+    		<div id = "Dynamique-txt">
         		<ul id ="liste">
         		    {% for article in articles %}
         		    	{% if (article.checked)  %}]
@@ -22,10 +19,12 @@
         		    {% endfor %}
         	    </ul>
     		</div>
-    		<div id = "Affichage">
+    		<div id = "Dynamique-img">
     		</div>
+
 		</div>
-		
+		<div class ="Dynamique-Menu-Gauche"></div>
+		<div class ="Dynamique-Menu-Bas"></div>
 		<!-- <button onclick="setInterval(AffichageDyn,3000)" id ="btn">LANCER L'AFFICHAGE DYNAMIQUE</button> -->
 		<script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
 		<script>Clear(); setInterval(AffichageDyn,1500)</script>
