@@ -6,15 +6,21 @@
 
 	<div class ="img1">
 		<div class ="contenuTitre">
-		<h3>Articles Disponibles récents</h3>
+		<h3>Newest Article</h3>
 		</div>
 		<!-- Affichage Article Récents Page d'acceuil -->
-		<div class="Articles-Haut">
-		    {% for article in articles %}
-    			<a href = {{ path('user_displayArticle', {'slug' : article.slug }) }}><div class="Article-display-home"><li><div class ="buttonText"><b></br>
-    			{{ article.title }}</b></br><div class ="auteur">Auteur : {{ article.author }}</div></div></li></div></a>
-			{% endfor %}
-		</div>
+    		<div class="Articles-Haut">
+    		    {% for article in articles %}
+		    		<div class= "container">
+        		    	<div class = "image">
+                			<a href = {{ path('user_displayArticle', {'slug' : article.slug }) }}><div class="Article-display-home"><li><div class ="buttonText"><b></br>
+                			{{ article.title }}</b></br><div class ="auteur">Auteur : {{ article.author }}</div></div></li></div></a>
+        				</div>
+
+					</div>
+    			{% endfor %}
+    		</div>
+
 		<div class="2-Articles-Bas">
 		
 		</div>
