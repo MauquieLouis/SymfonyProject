@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>LMI :$£!@? Affichage Dynamique</title>
+    	<meta charset="UTF-8">
+
+        {% block stylesheets %}
+        <link href="{{ asset('css/affichage.css') }}" rel="stylesheet" />
+        {% endblock %}
+    </head>
+    <body>
+    
+    <div id="bloc">
+    
+    	<div id="bloc-droite">
+    		<div id="logo">
+    			<img class="article-img" src="{{ asset('Images/logo.jpg') }}">
+    		</div>
+    		
+    		<div id="heure">Mardi 12 f�vrier 2018<br><p>12h00</p></div>
+    		<div id="actualites">Actualit�s<br><p>Fil RSS AFP</p></div>
+    		<div id="droits"><p class="center">BTS SN option IR <br> Bayle, Canal, Mauqui�</p></div>
+    	
+    	
+    	</div>
+    	
+    	<div id="bloc-centre">
+    		<div id="articles"><h1>Les articles</h1></div>
+    		<div id="calendrier"><p>Le calendrier Google Agenda</p></div>
+    	
+    	</div>
+    
+    </div>
+    
+    
+    
+    </body>
+</html>

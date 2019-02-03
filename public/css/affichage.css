@@ -1,0 +1,97 @@
+/*******************************************************/
+/*       Feuille de style de l'affichage dynamique     */
+/*       corriger pixel dans l'id bloc selon l'�cran   */
+/*       de diffusion                                  */
+/*******************************************************/
+
+/*********************G�n�ral***************************/
+body {
+  background-color: black;
+  color : white;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+
+#bloc {
+	border: 1px dashed green;
+	height: 900px;
+    width: 1600px;    	
+}
+
+/***********Elements int�rieurs au bloc*****************/
+
+#bloc-droite{
+	height: 100%;
+    width: 25%;
+    border: 1px dashed red;
+    text-align: center;
+    float: left;
+}
+
+#bloc-centre{
+	height: 100%;
+    width: 73%;
+    border: 1px dashed red;
+    text-align: center;
+    float: right;
+}
+
+/*****Elements int�rieurs au bloc-droite*****************/
+
+#logo {
+	height: auto;
+    width: 100%;
+    border: 1px dashed blue;	
+}
+
+#heure {
+	height: 10%;
+    width: 100%;
+    color: white;
+    border: 1px dashed blue;
+    text-align: center;
+}
+
+#actualites {
+	height: auto;
+    width: 100%;
+    color: white;
+    border: 1px dashed blue;
+}
+
+#droits {
+	height: 8%;
+    width: 100%;
+    color: white;
+    border: 1px dashed blue;
+}
+
+p.center {
+  	top: 50%;
+  	left: 50%;
+  	color: green;
+}
+
+/***********Elements int�rieurs au bloc-centre*****************/
+#articles {
+	height: 65%;
+    width: 100%;
+    border: 1px dashed green;
+}
+
+#calendrier {
+	height: 34%;
+    width: 100%;
+    color:white;
+    border: 1px dashed green;
+}
+
