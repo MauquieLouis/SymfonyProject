@@ -40,10 +40,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/home/Display/Dynamic", name="home_display_dynamic")
      */
-    public function DynDisplay()
+    public function DynDisplay(EntityManagerInterface $em)
     {
+        $repository = $em->getRepository(Article::class);
+        $articles = $repository->findAll();
         
-        return $this->render('home/affichage.html.twig');
+        return $this->render('home/affichage.html.twig', ['articles' => $articles]);
     }
     //////////////////////////////////////////////////////////////////////
                                  //ADMIN//

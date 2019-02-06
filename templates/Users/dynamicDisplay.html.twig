@@ -12,7 +12,7 @@
     		<div id = "Dynamique-txt">
         		<ul id ="liste">
         		    {% for article in articles %}
-        		    	{% if (article.checked)  %}]
+        		    	{% if (article.checked)  %}
         					<li class = "list-article">{{ article.title }} : {{ article.content }}\ <img class="article-img" src="{{ asset('Images/'~article.imageFilename) }}"></li>
         		    	{% endif %}	
         		    	
