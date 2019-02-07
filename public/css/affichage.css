@@ -6,7 +6,7 @@
 
 /*********************G�n�ral***************************/
 body {
-  background-color: black;
+  background-color: #000000;
   color : white;
 }
 
@@ -94,5 +94,15 @@ p.center {
     width: 100%;
     color:white;
     border: 1px dashed green;
+}
+
+/****************Rajouté par louis*******************/
+
+/*Pour les images*/
+.article-img
+{
+	opacity:0.5;
+	width	: 350px;
+	height:auto;
 }
 
