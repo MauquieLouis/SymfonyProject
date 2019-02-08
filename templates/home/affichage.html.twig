@@ -18,8 +18,8 @@
     		</div>
     		
     		<div id="heure">Mardi 12 f�vrier 2018<br><p>12h00</p></div>
-    		<div id="actualites">Actualit�s<br><p>Fil RSS AFP</p></div>
-    		<div id="droits"><p class="center">BTS SN option IR <br> Bayle, Canal, Mauqui�</p></div>
+    		<div id="actualites">Actualités<br></div>
+    		<div id="droits"><p class="center">BTS SN option IR <br> Bayle, Canal, Mauquié</p></div>
     	
     	
     	</div>
@@ -57,20 +57,20 @@
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
-    <script type="text/javascript" src="{{ asset('js/ApiGoogleCalendar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/ApiPDynamique.js') }}"></script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad();"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
       
     </script>
-    <script type="text/javascript">setInterval(AffichageDynEvent,1000);</script>
+    <script type="text/javascript">Clear();setInterval(AffichageDynEvent,1000);</script>
     		</div>
     	
     	</div>
     
     </div>
     
-    <script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
-    <script>Clear(); setInterval(AffichageDyn,1500)</script>
+    <!-- <script type="text/javascript" src="{{ asset('js/testAffichage.js') }}"></script>
+    <script>Clear(); setInterval(AffichageDyn,1500)</script> -->
     </body>
 </html>

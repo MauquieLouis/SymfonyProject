@@ -62,7 +62,7 @@ img {
 }
 
 #actualites {
-	height: auto;
+	height: 100px;
     width: 100%;
     color: white;
     border: 1px dashed blue;
@@ -101,7 +101,7 @@ p.center {
 /*Pour les images*/
 .article-img
 {
-	opacity:0.5;
+	opacity:0.8;
 	width	: 350px;
 	height:auto;
 }
