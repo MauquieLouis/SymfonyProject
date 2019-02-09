@@ -7,6 +7,7 @@ use App\Form\ArticleListFormType;
 use App\Form\EditFormType;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -123,7 +124,7 @@ class AdminController extends AbstractController
         }
         if (($form->getClickedButton() && 'NoDelete' === $form->getClickedButton()->getName()))
         {
-            $this->addFlash('success','Article delete');
+
             return $this->redirectToRoute('list_article',);
         }
         return $this->render('Admin/validation.html.twig', array('action' => $form->createView(),));
@@ -137,14 +138,41 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/selectUser", name="admin_selectUser")
      */
-    public function SelectUser(Request $request)
+    public function SelectUser(Request $request, UserRepository $uR,  EntityManagerInterface $em)
     {
        $form = $this->createForm(ListFormType::class);
 
        $form->handleRequest($request);  
        if($form->isSubmitted() && $form->isValid())
        {
-           return $this->redirectToRoute('admin_accountControl',['id' => 1/*$form->getData(['id'])*/]);
+           //dd($form->getData()['Role']);
+           //dd($form->getData()['user']->getId());
+           $user = $uR->findOneBy(['id' =>$form->getData()['user']->getId()]);
+           //dd($user);
+           switch($form->getData()['Role'])
+           {
+               case 'ROLE_USER':
+                   //dd("CASE ===> ROLE_USER");
+                   $user->setRoles([]);
+                   break;
+                   
+               case 'ROLE_ADMIN':
+                   //dd( $form->getData()['Role']);
+                   $user->setRoles([$form->getData()['Role']]);
+                   break;
+                   
+               case 'DELETE':
+                   dd("CASE ===> DELETE");
+                   break;
+                   
+               default:
+                   dd("ERROR =====> \'form->getData()[\'Role\']\' ");
+                   break;
+           }
+           $em->persist($user);        //Pour ajouter � la base de donn�e
+           $em->flush();
+           
+           return $this->redirectToRoute('list_article');
        }
        
        return $this->render('Admin/selectUser.html.twig',array('form' => $form->createView(),)); 

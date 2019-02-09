@@ -35,9 +35,14 @@ class ListFormType extends AbstractType
                 
        $builder
        ->add('user', EntityType::class, ['class' => User::class,
-           'choice_label' => function(User $user){ return sprintf('(%d)==> %s',$user->getId(), $user->getEmail());},
-           'choices' => $this->userRepository->findAllEmailAlphabetical(),
-           'placeholder' =>'Choose an Author (schlague) !!',]);
+           'choice_label' => function(User $user){ return sprintf('%s',$user->getEmail());},
+           'placeholder' =>'Choose  a User',])
+       ->add('Role', ChoiceType::class, [
+               'choices'  => [
+                   'Give Admin permission' => 'ROLE_ADMIN',
+                   'Give Only User permission' => 'ROLE_USER',
+                   'Delete Account' => 'DELETE',
+               ],'placeholder' =>'Choose  an Action',]);
        
     }
 

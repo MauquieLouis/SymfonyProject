@@ -19,6 +19,10 @@
                             <h3>Welcome back, {{ app.user.firstName }}</h3>                   
                         </div>
                     </div>
+                    <div  class = "bt-1et1">
+                        <a href="" class = "bt-type-1">Edit Account</a>
+                        <a href="{{ path('del_account', { 'id': app.user.id }) }}" class = "bt-type-1">Del. Account</a>
+                    </div>
                 </div>
             </div>
         </div>

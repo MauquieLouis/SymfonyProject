@@ -111,7 +111,7 @@ body
 .button-Create-Account
 {
 	color: rgba(200,200,200,0.7);
-	width: 100%;
+	width:;
 	text-align: center;
 	/*color: #DDDDDD;*/
 }
@@ -251,7 +251,7 @@ body
 .formLog
 {
 	width:40%;
-	height:300px;
+	height:auto;
 	margin-top:200px;
 	background:rgba(255,255,255,0.2);
 	position: absolute; /* postulat de départ */
@@ -262,7 +262,7 @@ body
 .form
 {
 	width:81%;
-	height:600px;
+	height:auto;
 	margin-top:300px;
 	background:rgba(255,255,255,0.2);
 	position: absolute; /* postulat de départ */
@@ -272,7 +272,17 @@ body
 .formNewAccount
 {
 	width:50%;
-	height:330px;
+	height:auto;
+	margin-top:180px;
+	background:rgba(255,255,255,0.2);
+	position: absolute; /* postulat de départ */
+	left: 50%; /* à 50%/50% du parent référent */
+	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+}
+.form-search-user
+{
+	width:50%;
+	height:auto;
 	margin-top:180px;
 	background:rgba(255,255,255,0.2);
 	position: absolute; /* postulat de départ */
@@ -438,6 +448,20 @@ input, textarea, option, submit {
  	border-radius: 8px 8px 8px 8px;
  	resize: vertical;
  	border: 1px solid #999999;
+}
+select
+{
+	width:100%;
+	height: 30px;
+	background:#909FA3;
+	color: white;
+}
+option
+{
+	width:100%;
+	height: 30px;
+	background:#909FA3;
+	color: white;
 }
 textarea
 {

@@ -7,13 +7,14 @@
 		<div class ="contenuTitre">
 			<h3>Select User</h3>
 		</div>
-        {{ form_start(form, {attr: {class: 'my-form-class'} })}}
-        {{ form_widget(form) }}    
+		<div class ="form-search-user">
+            {{ form_start(form, {attr: {class: 'my-form-class'} })}}
+            <a href=""> |+| Create Admin Account</a>
 
-        
-	    <input type="submit" class="btn" value="Select User" />
-        {{ form_end(form) }}
-		
+            {{ form_widget(form) }}    
+            <input type="submit" class="btn" value="Save Modifications" />
+            {{ form_end(form) }}
+		</div>
 	</div>
 
 {% endblock %}
