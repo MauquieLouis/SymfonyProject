@@ -60,7 +60,8 @@ class AdminController extends AbstractController
            // sprintf("%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
             $article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,10000))); 
             //$article->setSlug($buf);                            
-            //$article->setAuthor($this->getUser());                      
+            //$article->setAuthor($this->getUser()); 
+            $article->setAuthor($this->getUser()->getFirstName());
             $article->setHeartCount(rand(0,100));
             $em->persist($article);        //Pour ajouter � la base de donn�e
             $em->flush();
@@ -82,7 +83,9 @@ class AdminController extends AbstractController
      */
     public function EditArticle(Article $article, Request $request, EntityManagerInterface $em)
     {
-        $form = $this->createForm(ArticleFormType::class, $article);
+        $form = $this->createForm(ArticleFormType::class, $article);//->setData('author',['placeholder' => sprintf('(107)==> %s', $article->getAuthor())]);
+        
+        
         
         $form->handleRequest($request);
         
@@ -119,7 +122,7 @@ class AdminController extends AbstractController
             $em->remove($article);        //Pour supprimer un article.
             $em->flush();
             
-            $this->addFlash('success','Article delete');
+            $this->addFlash('warning','Article delete');
             return $this->redirectToRoute('list_article', );
         }
         if (($form->getClickedButton() && 'NoDelete' === $form->getClickedButton()->getName()))

@@ -87,12 +87,9 @@ class UserController extends AbstractController
         {
             
             /*- - - - - - - - - - D E C O N N E C T E R   L ' U T I L I S E U R   A V A N T   D E   L ' E F F A C E R - - - - - - - - - - - */
-            $this->get('security.token_storage')->setToken(null);
-            //$this->get('request')->getSession()->invalidate();
+            $this->get('security.token_storage')->setToken(null);   //Deconnexion Utilisateur            
             
-            
-            
-            $em->remove($user);        //Pour supprimer un article.
+            $em->remove($user);        //Pour supprimer L'utilisateur.
             $em->flush();
 
             return $this->redirectToRoute('home', );

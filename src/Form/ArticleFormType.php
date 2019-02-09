@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ArticleFormType extends AbstractType
 {
@@ -28,11 +29,12 @@ class ArticleFormType extends AbstractType
             ->add('content')
             ->add('publishedAt', null,['widget' => 'single_text'])
             ->add('ImageFileName', TextType::class, ['help' => 'Put the image name'])
-            ->add('author', EntityType::class, ['class' => User::class,
-            'choice_label' => function(User $user){ return sprintf('(%d)==> %s',$user->getId(), $user->getEmail());},
+            //->add('author', EntityType::class, ['class' => User::class,
+            //'choice_label' => function(User $user){ return  $user->getEmail();},
+            //'data' => 'admin0@test.com',
             /*'choices' => $this->userRepository->findAllEmailAlphabetical(),*/
-            'placeholder' =>'Choose an Author (schlague) !!',
-            /*'invalid_message' =>'Symfony is too smart for your hacking!', 'data_class' => null*/])
+            //'placeholder' =>'Choose an Author (schlague) !!',
+           // /*'invalid_message' =>'Symfony is too smart for your hacking!', 'data_class' => null*/])
             
            /* ->add('author', EntityType::class,['class' => User::class, 'choice_label' => function(User $user)
             { return sprintf('(%d) %s ==> %s',$user->getId(), $user->getFirstName(), $user->getEmail());}, 'placeholder' => 'Choose an Author (schlague) !!'])*/

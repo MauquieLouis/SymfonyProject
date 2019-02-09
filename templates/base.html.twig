@@ -29,6 +29,13 @@
         	<li><a href="{{ path('home_display_dynamic') }}" class = "boutonAccueil">Public Display</a>					</li>
         </ul>
         </div>
+        <!-- // - - - - - - M E S S A G E S   F L A S H - - - - - - - -// -->
+        {% for message in app.flashes('success') %}
+    		<div class = "alert-success"> {{ message }}</div> 
+	    {% endfor %}
+	    {% for message in app.flashes('warning') %}
+    		<div class = "alert"> {{ message }}</div> 
+	    {% endfor %}
     </head>
 
     <body >
@@ -37,9 +44,9 @@
     	
     	
 	    
-        {% block body %}{% for message in app.flashes('success') %}
-    		<div class = "alert-success"> {{ message }}</div> 
-	    {% endfor %}{% endblock %}
+        {% block body %}
+
+	    {% endblock %}
         {% block javascripts %}{% endblock %}
         </div>
     </body>
