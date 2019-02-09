@@ -69,6 +69,7 @@ class UserController extends AbstractController
     public function DelAccount(User $user,Request $request, EntityManagerInterface $em)
     {
         //dd($user->getId());
+        //Pour empecher les petits malin de supprimer le compte des autres
         if($user->getId() != $this->getUser()->getId())
         {
             return $this->redirectToRoute('home',);
@@ -86,8 +87,11 @@ class UserController extends AbstractController
         {
             
             /*- - - - - - - - - - D E C O N N E C T E R   L ' U T I L I S E U R   A V A N T   D E   L ' E F F A C E R - - - - - - - - - - - */
-            //$this->get('security.context')->setToken(null);
+            $this->get('security.token_storage')->setToken(null);
             //$this->get('request')->getSession()->invalidate();
+            
+            
+            
             $em->remove($user);        //Pour supprimer un article.
             $em->flush();
 
