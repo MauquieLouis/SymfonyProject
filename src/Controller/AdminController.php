@@ -63,6 +63,7 @@ class AdminController extends AbstractController
             //$article->setAuthor($this->getUser()); 
             $article->setAuthor($this->getUser()->getFirstName());
             $article->setHeartCount(rand(0,100));
+            $article->setPublishedAt(new \DateTime());
             $em->persist($article);        //Pour ajouter � la base de donn�e
             $em->flush();
             

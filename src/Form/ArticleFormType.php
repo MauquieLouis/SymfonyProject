@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticleFormType extends AbstractType
 {
@@ -28,7 +29,7 @@ class ArticleFormType extends AbstractType
             ->add('title', TextType::class, ['help' => 'Put a unique title for this article dussutour !',])
             ->add('content')
             ->add('publishedAt', null,['widget' => 'single_text'])
-            ->add('ImageFileName', TextType::class, ['help' => 'Put the image name'])
+            ->add('ImageFileName', FileType::class, ['data_class' => null,])
             //->add('author', EntityType::class, ['class' => User::class,
             //'choice_label' => function(User $user){ return  $user->getEmail();},
             //'data' => 'admin0@test.com',

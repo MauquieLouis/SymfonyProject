@@ -172,16 +172,21 @@ function AffichageDynEvent()
 	AffichageDate();
 	if(!(compteur % 5))
 	{
-		if(++i>= lis.length )
-		{
-			i=0;
-		}
+
 		if(++j >= tableEvent.length)
 		{
 			j=0;
 		}
-		Affichagetext(elem[i][0],elem[i][1]);	
+
 		AffichagetextEvent(tableEvent[j]);	
+	}
+	if(!(compteur % 11))
+	{
+		if(++i>= lis.length )
+		{
+			i=0;
+		}
+		Affichagetext(elem[i][0],elem[i][1]);	
 	}
 
 		
