@@ -26,6 +26,7 @@ class HomeController extends AbstractController
      */
     public function index(EntityManagerInterface $em)
     {
+        //dd('slt');
         $repository = $em->getRepository(Article::class);
         $articles = $repository->findAllPublishedOrderedByNewest();
         
