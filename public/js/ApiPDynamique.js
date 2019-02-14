@@ -22,8 +22,8 @@ var i;
 var tableEvent = [];
 //alert(date2);
 //Client ID and API key from the Developer Console
-var CLIENT_ID = '516094392963-ls2uqh5mkl1n42itdrtjkp6fo34n5en9.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyA556nQpdim8unX3vlxTnpzLA-RrAiqQGY';
+var CLIENT_ID ='516094392963-ls2uqh5mkl1n42itdrtjkp6fo34n5en9.apps.googleusercontent.com';
+var API_KEY ='AIzaSyA556nQpdim8unX3vlxTnpzLA-RrAiqQGY';
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];

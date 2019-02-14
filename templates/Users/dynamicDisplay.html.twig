@@ -13,7 +13,7 @@
         		<ul id ="liste">
         		    {% for article in articles %}
         		    	{% if (article.checked)  %}
-        					<li class = "list-article">{{ article.title }} : {{ article.content }}\ <img class="article-img" src="{{ asset('Images/'~article.imageFilename) }}"></li>
+        					<li class = "list-article">{{ article.title }} : {{ article.content }}\ <img src = "{{ asset('/public/images/')~article.imageFilename }}" height="auto" width="400px"></li>
         		    	{% endif %}	
         		    	
         		    {% endfor %}

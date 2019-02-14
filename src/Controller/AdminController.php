@@ -50,20 +50,39 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            dd($form->getData());
+            //dd($form->getData());
           /*  $data = $form->getData();
             $article = new Article();
             $article->setTitle($data['title']);
             $article->setContent($data['content']);*/
             /** @var Article $article */
             $article = $form->getData();
+            $article->setAuthor($this->getUser()->getFirstName());                      //L'auteur est le nom de la personne connecté
+            $article->setHeartCount(rand(0,100));                                       //Un champ peu utile pour le moment
+            $article->setPublishedAt(new \DateTime());                                  //On récupère la date du jour si aucun date n'est renseigné
+            $article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,10000)));    //Le slug est le nom de l'article qui sera appellé dans l'url 
+            
+            $em->persist($article);            //Je n'ai malheureusement pas trouvé plus optimisé qu'inclure une première fois l'article pour qu'il obtienne son ID puis changer le nom de l'image avec l'ID de l'article
+            $em->flush();
+            //dd($article);
+            
+            $name = $form['title']->getData().$article->getId().'.jpg';
+            //dd($form->getData());
+            
+                
+            $form['ImageFileName']->getData()->move(
+                ('public/images/')/*.$document->getId()*/,              //.$document->getId()  => à rajouter si on souhaite ajouter un dossier dans public lors de l'enregistrement de l'image
+                $name
+                );
+
+            
+            //$document->setImageFile($fileName);
+            $article->setImageFileName($name);
            // sprintf("%s-%s",$article->getTitle(), rand(0,1000));   //generation auto du slug
             $article->setSlug(sprintf("%s-%s",$article->getTitle(), rand(0,10000))); 
             //$article->setSlug($buf);                            
             //$article->setAuthor($this->getUser()); 
-            $article->setAuthor($this->getUser()->getFirstName());
-            $article->setHeartCount(rand(0,100));
-            $article->setPublishedAt(new \DateTime());
+
             $em->persist($article);        //Pour ajouter � la base de donn�e
             $em->flush();
             
