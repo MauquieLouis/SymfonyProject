@@ -2,6 +2,7 @@
 
 var i = -1;
 var j = -1;
+var h = -1;
 var elem= [[]];
 
 //On récupere sur le documents html en question la div avec l'ID liste puis on prend tous les élements de la liste
@@ -16,7 +17,9 @@ for (var y =0; y<lis.length; y++)
 
 var date = new Date(); 
 //alert(date);
+var date1 = date;
 var date2 = date;
+date1.setDate(date.getDate()+1);
 date2.setDate(date.getDate()+2);
 var i;
 var tableEvent = [];
@@ -122,7 +125,7 @@ function listUpcomingEvents() {
     'orderBy': 'startTime'
   }).then(function(response) {
     var events = response.result.items;
-    appendPre('Upcoming events:');
+    appendPre('Upcoming events:');						//Message Event
 
     if (events.length > 0) {
       for (i = 0; i < events.length; i++) {
@@ -135,16 +138,13 @@ function listUpcomingEvents() {
         //alert(date2.toJSON())//toLocaleDateString());
         //alert(event.start.dateTime < date2.toJSON());
         if(event.start.dateTime < date2.toJSON())
-  	  {
-      	  
-      	  //appendPre(event.summary + ' (' + when + ')');
-      	  tableEvent[i] = (event.summary + ' ('+ when +')');
-
-      	  //alert(tableEvent[i]);
-  	  }
+	  	  {
+	      	  //appendPre(event.summary + ' (' + when + ')');
+	      	  tableEvent[i] = (event.summary + ' ('+ when +')');
+	  	  }
       }
     } else {
-      appendPre('No upcoming events found.');
+      appendPre('No upcoming events found.');					//Message No Events
     }
   });
 }
@@ -153,6 +153,11 @@ function listUpcomingEvents() {
 function AffichagetextEvent(text)
 {
 	document.getElementById('Events').innerHTML = text;
+	//document.getElementById('btn').remove();
+}
+function AffichagetextEventDroite(text)
+{
+	document.getElementById('calendrier-Droite').innerHTML = text;
 	//document.getElementById('btn').remove();
 }
 var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
@@ -177,11 +182,12 @@ function AffichageDynEvent()
 		{
 			j=0;
 		}
-
 		AffichagetextEvent(tableEvent[j]);	
 	}
+	
 	if(!(compteur % 11))
 	{
+		
 		if(++i>= lis.length )
 		{
 			i=0;

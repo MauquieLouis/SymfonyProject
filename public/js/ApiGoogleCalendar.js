@@ -1,6 +1,7 @@
 	  var date = new Date(); 
 	  //alert(date);
 	  var date2 = date;
+
 	  date2.setDate(date.getDate()+2);
 	  var i;
 	  var tableEvent = [];
