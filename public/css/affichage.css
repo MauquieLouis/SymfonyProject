@@ -48,13 +48,13 @@ img {
 /*****Elements int�rieurs au bloc-droite*****************/
 
 #logo {
-	height: auto;
+	height: 32%;
     width: 100%;
     border: 1px dashed blue;	
 }
 
 #heure {
-	height: 10%;
+	height: 11%;
     width: 100%;
     color: white;
     border: 1px dashed blue;
@@ -62,7 +62,7 @@ img {
 }
 
 #actualites {
-	height: 100px;
+	height: 433px;
     width: 100%;
     color: white;
     border: 1px dashed blue;
@@ -73,7 +73,7 @@ img {
     width: 100%;
     color: white;
     border: 1px dashed blue;
-    margin-top:82%;
+    /*margin-top:82%;*/
 }
 
 p.center {
