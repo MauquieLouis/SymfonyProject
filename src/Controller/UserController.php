@@ -59,7 +59,7 @@ class UserController extends AbstractController
     public function index(LoggerInterface $logger)
     {
         $logger->debug('Checking account page for'.$this->getUser()->getEmail());
-        // dd($this->getUser()->getFirstName());
+        //dd($this->getUser());
         return $this->render('account/index.html.twig', []);
     }
     
