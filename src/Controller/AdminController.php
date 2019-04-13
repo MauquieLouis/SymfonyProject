@@ -17,6 +17,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Form\RemplissageTebleType;
+use App\Form\DynamicFormType;
+use App\Repository\TagsRepository;
+use App\Entity\Tags;
+use App\Entity\Choice;
+use App\Repository\ChoiceRepository;
+
 /**
  *  @IsGranted("ROLE_ADMIN")
  *
@@ -51,7 +58,7 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             //dd($form->getData());
-          /*  $data = $form->getData();
+            /*$data = $form->getData();
             $article = new Article();
             $article->setTitle($data['title']);
             $article->setContent($data['content']);*/
@@ -281,5 +288,57 @@ class AdminController extends AbstractController
                 )); 
         //return $this->render('Admin/dynamicStream.html.twig',);
     }
+    /**
+     * @Route("/admin/formDynamic/", name="admin_formDynamic")
+     */
+    public function testDynamicForm(Request $request, EntityManagerInterface $em)
+    {
+        $tags = new Tags();
+        $form = $this->createForm(RemplissageTebleType::class,$tags);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em->persist($tags);
+            $em->flush();
+            $this->addFlash('success','Category and SubCategory saved! !');
+            return $this->redirectToRoute('home_admin');
+        }
+        return $this->render('Admin/dynamicForm.html.twig',['form' => $form->createView()]);
+    }
+    /**
+     * @Route("/admin/formDynamic/Dynamic", name="admin_TryDynamic")
+     */
+    public function DynamicForm(Request $request, EntityManagerInterface $em)
+    {
+        $choice = new Choice();
+        $form = $this->createForm(DynamicFormType::class, $choice);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em->persist($choice);
+            $em->flush();
+            $this->addFlash('success','Update !');
+            return $this->redirectToRoute('admin_TryDynamic');
+        }
+        return $this->render('Admin/tryDynamic.html.twig',['form' => $form->createView()]);
+    }
     
+    /**
+     * @Route("/admin/formDynamic/Dynamic/{id}", name="admin_TryDynamic_id")
+     */
+    public function DynamicFormId(Request $request, EntityManagerInterface $em, $id, ChoiceRepository $cR)
+    {
+        //$choice = new Choice();
+        $choice = $cR->findOneBy(['id' => $id]);
+        $form = $this->createForm(DynamicFormType::class, $choice);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em->persist($choice);
+            $em->flush();
+            $this->addFlash('success','Update !');
+            return $this->redirectToRoute('admin_TryDynamic_id', ['id' => $choice->getId()]);
+        }
+        return $this->render('Admin/tryDynamic.html.twig',['form' => $form->createView()]);
+    }
 }

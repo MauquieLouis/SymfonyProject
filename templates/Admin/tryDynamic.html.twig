@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les maçons de L'informatique{% endblock %}
+
+{% block body %}
+
+	<div class ="img7">
+	<div class ="contenuTitre">
+		<h3>Formulaire Dynamique</h3>
+	</div>
+		{{ form_start(form) }}
+			{{ form_row(form.name) }}
+			{{ form_row(form.location) }}
+			{% if form.category is defined %}
+			    {{ form_row(form.category) }}
+		    {% endif %}
+		    <button type="submit">Save</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

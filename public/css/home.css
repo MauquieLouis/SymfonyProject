@@ -165,6 +165,13 @@ body
 	left: 50%; /* à 50%/50% du parent référent */
 	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
 }
+.bt-123et123
+{
+	margin-top:390px;
+	position: absolute; /* postulat de départ */
+	left: 50%; /* à 50%/50% du parent référent */
+	transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+}
 .btn
 {
 	margin:2px;

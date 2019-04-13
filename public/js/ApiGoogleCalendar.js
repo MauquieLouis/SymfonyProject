@@ -1,4 +1,4 @@
-	  var date = new Date(); 
+à	  var date = new Date(); 
 	  //alert(date);
 	  var date2 = date;
 
