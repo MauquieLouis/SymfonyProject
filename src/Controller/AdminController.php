@@ -310,15 +310,15 @@ class AdminController extends AbstractController
      */
     public function DynamicForm(Request $request, EntityManagerInterface $em)
     {
-        $choice = new Choice();
-        $form = $this->createForm(DynamicFormType::class, $choice);
+//         $choice = new Choice();
+        $form = $this->createForm(DynamicFormType::class );//$choice);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $em->persist($choice);
-            $em->flush();
+//             $em->persist($choice);
+//             $em->flush();
             $this->addFlash('success','Update !');
-            return $this->redirectToRoute('admin_TryDynamic');
+//             return $this->redirectToRoute('admin_TryDynamic');
         }
         return $this->render('Admin/tryDynamic.html.twig',['form' => $form->createView()]);
     }
@@ -334,8 +334,8 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $em->persist($choice);
-            $em->flush();
+//             $em->persist($choice);
+//             $em->flush();
             $this->addFlash('success','Update !');
             return $this->redirectToRoute('admin_TryDynamic_id', ['id' => $choice->getId()]);
         }

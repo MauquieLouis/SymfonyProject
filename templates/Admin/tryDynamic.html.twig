@@ -9,12 +9,29 @@
 		<h3>Formulaire Dynamique</h3>
 	</div>
 		{{ form_start(form) }}
-			{{ form_row(form.name) }}
-			{{ form_row(form.location) }}
-			{% if form.category is defined %}
-			    {{ form_row(form.category) }}
-		    {% endif %}
+{# 			{{ form_row(form.name) }}#}
+{# 			{{ form_row(form.location) }}#}
+{# 			{% if form.category is defined %}#}
+{# 			    {{ form_row(form.category) }}#}
+{# 		    {% endif %}#}
 		    <button type="submit">Save</button>
 		{{ form_end(form) }}
 	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    	$(document).on('change','#dynamic_form_location',function (){
+    			console.log('CHANGE !!');
+    			let $field = $(this);
+    			let $form = $field.closest('form');
+    			let data = {};
+    			data[$field.attr('name')] = $field.val();
+    			console.log(data);
+    			$.post($form.attr('action'),data).then(function (data){
+        			let $input = $(data).find('#dynamic_form_category');
+	    			$('#dynamic_form_category').replaceWith($input)})
+	    			
+    			}
+    		);
+    </script>
 {% endblock %}

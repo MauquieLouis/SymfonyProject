@@ -22,7 +22,7 @@ class Tags
     private $category;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $SubCategory = [];
 
